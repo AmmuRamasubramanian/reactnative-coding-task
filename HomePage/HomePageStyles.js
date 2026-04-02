@@ -15,70 +15,134 @@ export default StyleSheet.create({
         top: 0,
         height: "100%",
     },
-    headerOfHome:{
-        display:"flex",
-        alignItems:"center",
-        flexDirection:"row",
-        justifyContent:"center",
-        marginTop:15
+    headerOfHome: {
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "center",
+        marginTop: 15,
     },
-    userAbsDiv:{
-        position:"absolute",
-        top:10,
-        left:0
+    userAbsDiv: {
+        position: "absolute",
+        top: 20,
+        left: 15,
+        width: "100%",
     },
-    contentContainer:{
-        flex:1,
+    contentContainer: {
+        flex: 1,
+        marginHorizontal: 15,
+        width: "100%"
+    },
+    title: {
+        color: "#EB655F",
+        textAlign: "center",
+        fontSize: normalize(19),
+        marginTop: 15,
+        fontFamily: "inter_semibold"
+    },
+    subTitle: {
+        color: colors.greenBtnColor,
+        fontSize: normalize(13),
+        marginTop: 10,
+        textAlign: "center",
+        fontFamily: "inter_medium",
+        lineHeight: 22,
+    },
+    subtitleWithVehicle: {
+        color: colors.greenBtnColor,
+        fontSize: normalize(15),
+        marginTop: 10,
+        textAlign: "center",
+        fontFamily: "inter_medium",
+        lineHeight: 22,
+    },
+    descText: {
+        color: colors.greenBtnColor,
+        fontSize: normalize(13),
+        marginTop: 15,
+        textAlign: "center",
+        lineHeight: 20,
+        fontFamily: "inter_medium",
         marginHorizontal:15
     },
-    title:{
-        color:"#EB655F",
-        textAlign:"center",
-        fontSize:normalize(19),
-        marginTop:15,
-        fontFamily:"inter_semibold"
+    addvehicleBtn: {
+        backgroundColor: colors.greenBtnColor,
+        height: 40,
+        minHeight: 40,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 10,
+        marginTop: 15,
+        alignSelf: "center",
+        paddingHorizontal: 15,
+        flexDirection: "row"
     },
-    subTitle:{
-        color:colors.greenBtnColor,
-        fontSize:normalize(13),
-        marginTop:10,
-        textAlign:"center",
-        fontFamily:"inter_medium",
-        lineHeight:22
+    addVehicleText: {
+        color: "white",
+        fontSize: normalize(14),
+        marginRight: 10,
+        fontFamily: "inter_medium"
     },
-    descText:{
-        color:colors.greenBtnColor,
-        fontSize:normalize(13),
-        marginTop:15,
-        textAlign:"center",
-        lineHeight:20,
-        fontFamily:"inter_reg"
+    vertGap: {
+        marginTop: "40%"
     },
-    addvehicleBtn:{
-        backgroundColor:colors.greenBtnColor,
-        height:40,
-        minHeight:40,
-        display:"flex",
-        alignItems:"center",
-        justifyContent:"center",
-        borderRadius:10,
-        marginTop:15,
-        alignSelf:"center",
-        paddingHorizontal:15,
-        flexDirection:"row"
+    innercontainer: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
     },
-    addVehicleText:{
-        color:"white",
-        fontSize:normalize(14),
-        marginRight:10,
-        fontFamily:"inter_medium"
+    vehicleWithItemsDiv: {
+        display: "flex",
+        alignItems: "center",
+        marginHorizontal: 15
     },
-    vertGap:{
-        marginTop:"40%"
+    vehicleText: {
+        color: colors.greenBtnColor,
+        fontFamily: "inter_medium",
+        fontSize: normalize(14),
+        marginRight: 10
     },
-    innercontainer:{
-        display:"flex",
-        alignItems:"center",
-        justifyContent:"center"
+    vehicleItemdiv: {
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: "white",
+        paddingHorizontal: 10,
+        borderRadius: 7,
+        height: 40,
+        minHeight: 40,
+        marginTop: 15,
+        flexDirection: "row",
+        marginRight: 10,
+        padding: 10
+    },
+    avatarOuter: {
+        width: "100%",
+        minWidth: "100%",
+        borderRadius: 9,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+        backgroundColor: "white",
+        marginTop: 20,
+        padding: 8,
+        overflow: "hidden"
+    },
+    avatarStyle: {
+        height: 160,
+        minHeight: 160,
+        width: "100%",
+        minWidth: "100%",
+        borderRadius: 6
+    },
+    addRefuellingText: {
+        color: colors.greenBtnColor,
+        fontSize: normalize(14),
+        marginTop: 10,
+        textAlign: "center",
+        fontFamily: "inter_medium",
+        lineHeight: 22,
     }
 })
