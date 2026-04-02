@@ -195,6 +195,7 @@ export default function AddRefuelingPage(){
             >
                 <VehicleListPopup
                     handleSelectVehicleItem={handleSelectVehicleItem}
+                    vehicleItem={vehicleItem}
                 />
             </BottomSheetWithDynamicFlatList>
             <BottomSheet

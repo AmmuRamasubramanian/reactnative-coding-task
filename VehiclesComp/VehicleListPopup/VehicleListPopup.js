@@ -5,22 +5,26 @@ import { useMileageAppStore } from '../../store'
 import { BottomSheetFlashList, BottomSheetFlatList } from '@gorhom/bottom-sheet'
 import isEqual from 'lodash.isequal'
 
-const VehicleListPopup=memo(({handleSelectVehicleItem})=>{
+const VehicleListPopup=memo(({handleSelectVehicleItem, vehicleItem})=>{
 
      const vehicleslist=useMileageAppStore((state)=>state.vehicles)
 
-    const MemoizedRenderItem=memo(({item, isFirstIndex})=>{
+    const MemoizedRenderItem=memo(({item, isFirstIndex, isSelected})=>{
         return(
-            <Pressable onPress={()=>handleSelectVehicleItem(item)} style={[styles.vehicleItem, !isFirstIndex && {marginTop:15}]}>
+            <Pressable 
+                onPress={()=>handleSelectVehicleItem(item)} 
+                style={[styles.vehicleItem, !isFirstIndex && {marginTop:15}, isSelected && {backgroundColor:"#D9F0F1"}]}
+            >
                 <Text style={styles.vehicleNameInPopup}>{item.vehicle_name}</Text>
             </Pressable>
         )
     },(r1, r2)=>{
         return isEqual(r1.item, r2.item) && r1.isFirstIndex===r2.isFirstIndex
+        && r1.isSelected===r2.isSelected
     })
     
-    const renderItem=useCallback(({item}, isFirstIndex)=>{
-        return <MemoizedRenderItem item={item} isFirstIndex={isFirstIndex}/>
+    const renderItem=useCallback(({item}, isFirstIndex, isSelected)=>{
+        return <MemoizedRenderItem item={item} isFirstIndex={isFirstIndex} isSelected={isSelected}/>
     },[])
 
     return(
@@ -30,9 +34,10 @@ const VehicleListPopup=memo(({handleSelectVehicleItem})=>{
                 data={vehicleslist}
                 renderItem={({item, index})=>{
                     const isFirstIndex=index===0
+                    const isSelected=vehicleItem && vehicleItem.id===item.id
                     return(
                         <>
-                        {renderItem({item}, isFirstIndex)}
+                        {renderItem({item}, isFirstIndex, isSelected)}
                         </>
                     )
                 }}
