@@ -19,6 +19,7 @@ import noImgFor4wheelVehicle from './assets/svgicons/noImgFor4wheelVehicle.png'
 import Onboardingscreen from './assets/svgicons/Onboardingscreen.png'
 import confetti from './assets/svgicons/confetti.png'
 import calendar from './assets/svgicons/calendar.svg'
+import Rose from './assets/svgicons/Rose.svg'
 
 export default{
     filterFilled,
@@ -41,5 +42,6 @@ export default{
     confetti,
     Onboardingscreen,
     noImgFor4wheelVehicle,
-    calendar
+    calendar,
+    Rose
 }

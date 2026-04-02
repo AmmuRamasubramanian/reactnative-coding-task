@@ -101,12 +101,12 @@ export default function AddRefuelingPage(){
                 <Text style={styles.title}>Add Refuelling Record</Text>
                 <View style={{marginTop:30}}/>
                 <Pressable style={styles.inputBox} onPress={handleOpenVehicleNamePopup}>
-                    <Text style={styles.vehicleName}>{vehicleItem && Object.keys(vehicleItem).length!==0 ? vehicleItem.vehicle_name : "Select a vehicle name"}</Text>
+                    <Text style={styles.vehicleName} numberOfLines={1} ellipsizeMode='tail'>{vehicleItem && Object.keys(vehicleItem).length!==0 ? vehicleItem.vehicle_name : "Select a vehicle name"}</Text>
                    <Icons.chevronright width={15} height={15} fill={colors.greenBtnColor}/>
                 </Pressable>
                 <View style={styles.inputGap}/>
                 <Pressable style={styles.inputBox} onPress={handleOpenRefuellingdatePopup}>
-                    <Text style={styles.vehicleName}>{refuellingdate && refuellingdate.length!==0 ? refuellingdate : "Enter refuelling date"}</Text>
+                    <Text style={styles.vehicleName} numberOfLines={1} ellipsizeMode='tail'>{refuellingdate && refuellingdate.length!==0 ? refuellingdate : "Enter refuelling date"}</Text>
                     <Icons.calendar width={15} height={15} fill={colors.greenBtnColor}/>
                 </Pressable>
                 <View style={styles.inputGap}/>

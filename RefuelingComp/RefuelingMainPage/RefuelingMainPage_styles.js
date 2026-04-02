@@ -116,9 +116,35 @@ export default StyleSheet.create({
         fontFamily:"inter_medium",
         fontSize:normalize(15),
         textAlign:"center",
-        marginRight:10
+        marginRight:10,
+        maxWidth:"90%"
     },
     rotatedIcon:{
         transform:[{rotate:"90deg"}]
+    },
+    contentContainerrecord:{
+        flex:1,
+        marginTop:10,
+        marginHorizontal:15
+    },
+    recordItem:{
+        display:"flex",
+        alignItems:"center",
+        paddingHorizontal:14,
+        paddingVertical:8,  
+        borderRadius:6,
+        backgroundColor:"white",
+        flexDirection:"row",
+        justifyContent:"space-between",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    recordInnerflex:{
+        display:"flex",
+        flexDirection:"row",
+        alignItems:"center",
     }
 })

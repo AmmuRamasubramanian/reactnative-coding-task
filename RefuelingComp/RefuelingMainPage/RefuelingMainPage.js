@@ -6,7 +6,9 @@ import Icons from '../../Icons'
 import { useNavigation } from '@react-navigation/native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import colors from '../../colors'
-import { useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import { FlashList } from '@shopify/flash-list'
+import isEqual from 'lodash.isequal'
 
 export default function RefuelingMainPage(){
 
@@ -14,9 +16,15 @@ export default function RefuelingMainPage(){
     const safeAreaInsets=useSafeAreaInsets()
 
     const vehicleslist=useMileageAppStore((state)=>state.vehicles)
-    const records=useMileageAppStore((state)=>state.records)
+    const recordslist=useMileageAppStore((state)=>state.records)
 
     const [selectedVehicleItem, setSelectedVehicleItem]=useState(null)
+    const selectedRecords=useMemo(()=>{
+        if(!selectedVehicleItem){
+            return []
+        }
+        return recordslist[selectedVehicleItem?.id]
+    },[recordslist, selectedVehicleItem])
 
     const handleNavigateaddvehicles=()=>{
         navigation.navigate('Vehicles', {screen:"AddVehiclesPage", initial:false})
@@ -32,15 +40,31 @@ export default function RefuelingMainPage(){
         }
     },[vehicleslist])
 
+    const MemoizedRenderItem=memo(({item, isFirstIndex})=>{
+        return(
+            <View style={[styles.recordItem, {marginTop:20}]}>
+                <View style={styles.recordInnerflex}>
+                    <Icons.Rose width={24} height={24}/>
+                </View>
+            </View>
+        )
+    },(r1, r2)=>{
+        return isEqual(r1.item, r2.item) && r1.isFirstIndex===r2.isFirstIndex
+    })
+
+    const renderItem=useCallback(({item}, isFirstIndex)=>{
+        return <MemoizedRenderItem item={item} isFirstIndex={isFirstIndex}/>
+    },[])
+
     return(
         <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right}]}>
             <View style={{flex:1, backgroundColor:colors.lightWhitish, width:"100%"}}>
                 <View style={styles.titleDiv}>
                     <Text style={styles.title}>Refuelling</Text>
                     {
-                        records && Object.keys(records).length!==0 && selectedVehicleItem &&
+                        selectedRecords && selectedRecords.length!==0 && selectedVehicleItem &&
                         <Pressable style={styles.selectedVehicleBox}>
-                            <Text style={styles.selectedVehicleText}>{selectedVehicleItem?.vehicle_name}</Text>
+                            <Text style={styles.selectedVehicleText} numberOfLines={1} ellipsizeMode='tail'>{selectedVehicleItem?.vehicle_name}</Text>
                             <View style={styles.rotatedIcon}>
                                 <Icons.chevronright width={15} height={15} fill={colors.greenBtnColor}/>
                             </View>
@@ -51,9 +75,25 @@ export default function RefuelingMainPage(){
                     (vehicleslist && vehicleslist.length!==0) ?
                     <>
                     {
-                        records && Object.keys(records).length!==0 ?
+                        selectedRecords && selectedRecords.length!==0 ?
                         <>
-                        
+                        <View style={styles.contentContainerrecord}>
+                        <FlashList
+                            data={selectedRecords}
+                            renderItem={({item, index})=>{
+                                const isFirstIndex=index===0
+                                return(
+                                    <>
+                                    {renderItem({item}, isFirstIndex)}
+                                    </>
+                                )
+                            }}
+                            keyExtractor={(item)=>item.id.toString()}
+                            showsVerticalScrollIndicator={false}
+                            estimatedItemSize={60}
+                            contentContainerStyle={{paddingBottom:100}}
+                        />
+                        </View>
                         </>
                         :
                         <>
