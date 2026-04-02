@@ -5,7 +5,9 @@ import houseunfilled from './assets/svgicons/house-unfilled.svg'
 import Milestone from './assets/svgicons/Milestone.svg'
 import cloud from './assets/svgicons/cloud.svg'
 import plusIcon from './assets/svgicons/plusIcon.svg'
+import Union from './assets/svgicons/Union.svg'
 import arrowright from './assets/svgicons/arrowright.svg'
+import user from './assets/svgicons/user.svg'
 
 export default{
     filterFilled,
@@ -15,5 +17,7 @@ export default{
     Milestone,
     cloud,
     plusIcon,
-    arrowright
+    arrowright,
+    Union,
+    user
 }

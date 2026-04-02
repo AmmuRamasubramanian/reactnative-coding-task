@@ -23,6 +23,12 @@ export default function HomePage(){
                 end={{ x: 1, y: 1 }}
             />
             <View style={styles.contentContainer}>
+                <View style={styles.headerOfHome}>
+                    <Icons.Union width={34} height={34}/>
+                    <View style={styles.userAbsDiv}>
+                        <Icons.user width={20} height={20} fill={"black"}/>
+                    </View>
+                </View>
                 <Text style={styles.title}>Hi Snack Muncher</Text>
                 <Text style={styles.subTitle}>Track your miles towards a prosperous financial journey!</Text>
                 <View style={styles.vertGap}/>
@@ -31,6 +37,7 @@ export default function HomePage(){
                 <Text style={styles.descText}>Add vehicle to start tracking its refuelling and performance</Text>
                 <Pressable style={styles.addvehicleBtn} onPress={handleNavigateVehicles}>
                     <Text style={styles.addVehicleText}>Add vehicles</Text>
+                    <Icons.arrowright width={14} height={14} fill={"white"}/>
                 </Pressable>
                 </View>
             </View>

@@ -43,7 +43,7 @@ export default StyleSheet.create({
         marginTop: 15,
         textAlign: "center",
         lineHeight: 20,
-        fontFamily: "inter_mediun"
+        fontFamily:"inter_reg"
     },
     addvehicleBtn: {
         backgroundColor: colors.greenBtnColor,
