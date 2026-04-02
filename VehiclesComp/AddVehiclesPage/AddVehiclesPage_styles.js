@@ -5,7 +5,18 @@ import colors from "../../colors";
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#F0F2F2"
+        backgroundColor: "#F0F2F2",
+    },
+    topHeaderStyle:{
+        position:"absolute",
+        top:0,
+        width:"100%",
+        height:120
+    },
+    arrowLeftIcon:{
+        position:"absolute",
+        top:0,
+        left:15
     },
     background: {
         position: 'absolute',
@@ -75,7 +86,7 @@ export default StyleSheet.create({
         fontSize: normalize(17),
         textAlign: "center",
         fontFamily: "inter_medium",
-        marginTop: 15
+        marginTop: 30
     },
     avatarOuter:{
         minHeight:125,
@@ -83,7 +94,7 @@ export default StyleSheet.create({
         width:125,
         minWidth:125,
         alignSelf:"center",
-        marginTop:25
+        marginTop:22
     },
     avatarStyle:{
         minHeight:125,

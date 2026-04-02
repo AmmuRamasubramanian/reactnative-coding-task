@@ -11,6 +11,9 @@ import user from './assets/svgicons/user.svg'
 import vehicles_unfilled from './assets/svgicons/vehicles_unfilled'
 import vehicles_filled from './assets/svgicons/vehicles_filled'
 import camera from './assets/svgicons/camera.svg'
+import topStyle from './assets/svgicons/topStyle.png'
+import arrowleft from './assets/svgicons/arrowleft.svg'
+import chevronright from './assets/svgicons/chevronright.svg'
 
 export default{
     filterFilled,
@@ -25,5 +28,8 @@ export default{
     user,
     vehicles_unfilled,
     vehicles_filled,
-    camera
+    camera,
+    topStyle,
+    arrowleft,
+    chevronright
 }

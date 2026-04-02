@@ -1,4 +1,4 @@
-import { View , Text, TextInput, Pressable, TouchableWithoutFeedback} from 'react-native'
+import { View , Text, TextInput, Pressable, TouchableWithoutFeedback, Dimensions} from 'react-native'
 import styles from './AddVehiclesPage_styles'
 import { useMemo, useState } from 'react'
 import { LinearGradient } from 'react-native-svg'
@@ -10,6 +10,8 @@ import { useMileageAppStore } from '../../store'
 import Icons from '../../Icons'
 import * as ImagePicker from 'expo-image-picker'
 import { Image } from 'expo-image'
+
+const { width } = Dimensions.get("window");
 
 export default function AddVehiclesPage(){
 
@@ -23,6 +25,7 @@ export default function AddVehiclesPage(){
     const [engineCC, setEngineCC]=useState('')
     const [showvehicleType, setshowvehicleType]=useState(false)
     const [avatar, setAvatar]=useState(null)
+    
 
     const handleChangeVehicleName=(text)=>{
         setVehicleName(text)
@@ -78,8 +81,15 @@ export default function AddVehiclesPage(){
 
     return(
         <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right,  paddingBottom:safeAreaInsets.bottom}]}>
+            <Image
+                source={Icons.topStyle}
+                style={styles.topHeaderStyle}
+            />
             <TouchableWithoutFeedback style={{flex:1}} onPress={handleCloseShowVehicleType}>
                 <View style={{flex:1}}>
+                <Pressable onPress={handleGoBack} style={styles.arrowLeftIcon}>
+                    <Icons.arrowleft width={25} height={25} fill={"white"}/>
+                </Pressable>
                 <Text style={styles.title}>Add Vehicles</Text>
                 <Pressable style={styles.avatarOuter} onPress={handleAddAvatarForVehicle}>
                 {
@@ -113,6 +123,7 @@ export default function AddVehiclesPage(){
                     <View style={styles.inputGap}/>
                     <Pressable style={styles.inputBox} onPress={handleToggleShowVehicleType}>
                         <Text style={[styles.inputText, {color:colors.greenBtnColor}]}>{vehicleType && vehicleType.length!==0 ? vehicleType : "Vehicle Type"}</Text>
+                        <Icons.chevronright width={15} height={15} fill={colors.greenBtnColor}/>
                     </Pressable>
                     <View style={styles.inputGap}/>
                     <View style={styles.inputBox}>

@@ -7,14 +7,11 @@ export default StyleSheet.create({
         position:"absolute",
         top:120,
         right:0,
-        width:140,
-        minWidth:140,
+        width:180,
+        minWidth:180,
         backgroundColor:"white",
-        borderWidth:0.8,
-        borderColor:"black",
-        borderStyle:"solid",
         zIndex:99,
-        borderRadius:8,
+        borderRadius:4,
         overflow:"hidden"
     },
     addVehicleItem:{
@@ -27,6 +24,7 @@ export default StyleSheet.create({
     },
     addVehicleText:{
         color:colors.greenBtnColor,
-        fontSize:normalize(13)
+        fontSize:normalize(13),
+        fontFamily:"inter_medium"
     }
 })
