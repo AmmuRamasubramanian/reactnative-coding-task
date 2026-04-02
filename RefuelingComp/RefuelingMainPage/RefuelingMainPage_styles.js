@@ -94,5 +94,31 @@ export default StyleSheet.create({
         position: "absolute",
         bottom: 10,
         right: 10
+    },
+    ///refueling list-------------------------------------
+    selectedVehicleBox:{
+        backgroundColor:"#C6E8E9",
+        height:46,
+        minHeight:46,
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"space-between",
+        flexDirection:"row",
+        paddingHorizontal:15,
+        borderRadius:8,
+        width:"80%",
+        alignSelf:"center",
+        marginTop:20,
+        marginBottom:10
+    },
+    selectedVehicleText:{
+        color:colors.greenBtnColor,
+        fontFamily:"inter_medium",
+        fontSize:normalize(15),
+        textAlign:"center",
+        marginRight:10
+    },
+    rotatedIcon:{
+        transform:[{rotate:"90deg"}]
     }
 })

@@ -6,13 +6,17 @@ import Icons from '../../Icons'
 import { useNavigation } from '@react-navigation/native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import colors from '../../colors'
+import { useEffect, useState } from 'react'
 
 export default function RefuelingMainPage(){
 
     const navigation=useNavigation()
     const safeAreaInsets=useSafeAreaInsets()
+
     const vehicleslist=useMileageAppStore((state)=>state.vehicles)
     const records=useMileageAppStore((state)=>state.records)
+
+    const [selectedVehicleItem, setSelectedVehicleItem]=useState(null)
 
     const handleNavigateaddvehicles=()=>{
         navigation.navigate('Vehicles', {screen:"AddVehiclesPage", initial:false})
@@ -22,11 +26,26 @@ export default function RefuelingMainPage(){
         navigation.navigate('AddRefuelingPage')
     }
 
+    useEffect(()=>{
+        if(vehicleslist && vehicleslist.length!==0){
+            setSelectedVehicleItem(vehicleslist[0])
+        }
+    },[vehicleslist])
+
     return(
         <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right}]}>
             <View style={{flex:1, backgroundColor:colors.lightWhitish, width:"100%"}}>
                 <View style={styles.titleDiv}>
                     <Text style={styles.title}>Refuelling</Text>
+                    {
+                        records && Object.keys(records).length!==0 && selectedVehicleItem &&
+                        <Pressable style={styles.selectedVehicleBox}>
+                            <Text style={styles.selectedVehicleText}>{selectedVehicleItem?.vehicle_name}</Text>
+                            <View style={styles.rotatedIcon}>
+                                <Icons.chevronright width={15} height={15} fill={colors.greenBtnColor}/>
+                            </View>
+                        </Pressable>
+                    }
                 </View>
                 {
                     (vehicleslist && vehicleslist.length!==0) ?
