@@ -28,12 +28,13 @@ export default function AddRefuelingPage(){
     const sheetRef=useRef(null)
     const navigation=useNavigation()
 
-    const [vehicleItem, setvehicleItem]=useState(null)
-    const [refuellingdate, setRefuellingdate]=useState('')
-    const [odometerstart, setOdometerstart]=useState('')
-    const [odometerend, setOdometerEnd]=useState('')
-    const [fuelConsumption, setFuelConsumption]=useState('')
-    const [price, setPrice]=useState('')
+    const initialVehicleObj=isEdit ? {"id":selectedRecordItem?.vehicle_id, vehicle_name:selectedRecordItem?.vehicle_name} : null
+    const [vehicleItem, setvehicleItem]=useState(initialVehicleObj)
+    const [refuellingdate, setRefuellingdate]=useState(isEdit ? selectedRecordItem?.date : '')
+    const [odometerstart, setOdometerstart]=useState(isEdit ? selectedRecordItem?.odometer_start : '')
+    const [odometerend, setOdometerEnd]=useState(isEdit ? selectedRecordItem.odometer_end :'')
+    const [fuelConsumption, setFuelConsumption]=useState(isEdit ? selectedRecordItem?.fuel_consumption : '')
+    const [price, setPrice]=useState(isEdit ? selectedRecordItem?.price : '')
 
     const handleOpenVehicleNamePopup=()=>{
         sheetRef.current?.present()
