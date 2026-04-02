@@ -107,7 +107,8 @@ export default function AddRefuelingPage(){
                 </Pressable>
                 <View style={styles.inputGap}/>
                 <Pressable style={styles.inputBox} onPress={handleOpenRefuellingdatePopup}>
-                <Text style={styles.vehicleName}>{refuellingdate && refuellingdate.length!==0 ? refuellingdate : "Enter refuelling date"}</Text>
+                    <Text style={styles.vehicleName}>{refuellingdate && refuellingdate.length!==0 ? refuellingdate : "Enter refuelling date"}</Text>
+                    <Icons.calendar width={15} height={15} fill={colors.greenBtnColor}/>
                 </Pressable>
                 <View style={styles.inputGap}/>
                 <Text style={styles.inputTitle}>Odometer</Text>
