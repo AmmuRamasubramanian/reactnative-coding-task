@@ -30,6 +30,7 @@ const VehicleListPopup=memo(({handleSelectVehicleItem, vehicleItem})=>{
     return(
         <View style={styles.container}>
             <Text style={styles.title}>Vehicle list</Text>
+            <View style={{flex:1}}>
             <BottomSheetFlatList
                 data={vehicleslist}
                 renderItem={({item, index})=>{
@@ -41,11 +42,12 @@ const VehicleListPopup=memo(({handleSelectVehicleItem, vehicleItem})=>{
                         </>
                     )
                 }}
-                keyExtractor={(item)=>item.id.toString()}
+                keyExtractor={(item, index)=>item.id.toString()}
                 contentContainerStyle={{paddingBottom:100, paddingTop:15}}
                 showsVerticalScrollIndicator={false}
                 estimatedItemSize={45}
             />
+            </View>
         </View>
     )
 })
