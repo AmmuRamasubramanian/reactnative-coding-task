@@ -3,23 +3,36 @@ import styles from './RefuelingRecordDetailsPage_styles'
 import { useMileageAppStore } from '../../store'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import moment from 'moment'
+import { useNavigation } from '@react-navigation/native'
+import Icons from '../../Icons'
+import colors from '../../colors'
 
 export default function RefuelingRecordDetailsPage(){
 
     const selectedRecordItem=useMileageAppStore((state)=>state.selectedRecordItem)
     const safeAreaInsets=useSafeAreaInsets()
+    const navigation=useNavigation()
 
     const dateText=moment(selectedRecordItem?.date, "YYYY-MM-DD").format("ddd, DD MMM ‘YY")
 
     const truncatedName = selectedRecordItem?.vehicle_name.length > 12 ? selectedRecordItem?.vehicle_name.slice(0, 12) + "..." : selectedRecordItem?.vehicle_name;
 
+    const addedTime=moment(Number(selectedRecordItem?.id)).format("Do MMM 'YY")
+
+    const handleGoBack=()=>{
+        navigation.goBack()
+    } 
+
     return(
         <View style={[styles.container, {paddingLeft: safeAreaInsets.left, paddingRight:safeAreaInsets.right, paddingBottom:safeAreaInsets.bottom}]}>
             <View style={[styles.topHeader, {paddingTop:safeAreaInsets.top}]}>
                 <View style={styles.dateFlexdiv}>
+                    <Pressable onPress={handleGoBack} style={styles.arrowLeftIcon}>
+                        <Icons.arrowleft width={25} height={25} fill={colors.greenBtnColor}/>
+                    </Pressable>
                     <Text style={styles.dateText}>{dateText}</Text>
                     <Text style={styles.vehicleName}>{truncatedName}</Text>
-                    <Text style={styles.vehicleName}></Text>
+                    <Text style={styles.addedTimeText}>Added on {addedTime}</Text>
                 </View>
             </View>
             <View style={[styles.contentContainer]}>

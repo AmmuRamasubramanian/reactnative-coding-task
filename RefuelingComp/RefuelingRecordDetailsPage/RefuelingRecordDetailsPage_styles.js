@@ -73,5 +73,16 @@ export default StyleSheet.create({
         fontFamily:"inter_medium",
         fontSize:normalize(15),
         marginTop:10
-    }
+    },
+    addedTimeText:{
+        color:"#58798C",
+        fontFamily:"inter_medium",
+        fontSize:normalize(12.5),
+        marginTop:10
+    },
+    arrowLeftIcon: {
+        position: "absolute",
+        top: 0,
+        left: 15
+    },
 })
