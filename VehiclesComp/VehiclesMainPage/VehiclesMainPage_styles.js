@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { normalize } from "../../helperfunctions";
+import colors from "../../colors";
 
 export default StyleSheet.create({
     container: {
@@ -52,5 +53,29 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         flex:1
+    },
+    mainTitle:{
+        color:colors.greenBtnColor,
+        fontSize:normalize(17),
+        textAlign:"center",
+        marginTop:15
+    },
+    vehicleName:{
+        color:colors.greenBtnColor,
+        fontSize:normalize(12)
+    },
+    vehicleType:{
+        color:colors.greenBtnColor,
+        fontSize:normalize(12)
+    },
+    vehicleEngineCC:{
+         color:colors.greenBtnColor,
+        fontSize:normalize(12)
+    },
+    bottomflexcontainer:{
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"space-between",
+        flexDirection:"row"
     }
 })

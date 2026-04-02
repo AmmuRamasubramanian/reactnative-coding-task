@@ -9,5 +9,5 @@ export default{
     filterUnfilled,
     housefilled,
     houseunfilled,
-    Milestone
+    Milestone,
 }
