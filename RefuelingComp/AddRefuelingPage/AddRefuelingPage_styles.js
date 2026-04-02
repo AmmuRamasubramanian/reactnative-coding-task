@@ -104,35 +104,4 @@ export default StyleSheet.create({
         fontSize: normalize(13),
         fontFamily: "inter_medium"
     },
-    //sheet popup--------------------------------------------------------
-    contentContainerOfBackdrop: {
-        flex: 1
-    },
-    vehiclelistDiv: {
-        marginBottom: 30,
-        marginHorizontal: 15,
-        marginTop: 10
-    },
-    vehiclelistTitle: {
-        color: colors.greenBtnColor,
-        fontFamily: "inter_semibold",
-        textAlign: "center",
-        fontSize: normalize(16),
-        marginBottom: 10
-    },
-    vehicleItemInPopup: {
-        height: 40,
-        minHeight: 40,
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "row",
-        paddingHorizontal: 12,
-        borderRadius: 8,
-        backgroundColor: "#D9F0F1"
-    },
-    vehicleNameInPopup: {
-        color: colors.greenBtnColor,
-        fontSize: normalize(12),
-        fontFamily: "inter_medium"
-    }
 })
