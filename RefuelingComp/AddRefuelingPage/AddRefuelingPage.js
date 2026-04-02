@@ -6,7 +6,7 @@ import colors from '../../colors'
 import {Calendar, LocaleConfig} from 'react-native-calendars';
 import BottomSheet, { BottomSheetBackdrop, BottomSheetView } from '@gorhom/bottom-sheet'
 import { useMileageAppStore } from '../../store'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import Icons from '../../Icons'
 import { Image } from 'expo-image'
 import BottomSheetWithDynamicFlatList from '../../ReusableRootComps/BottomsheetWithDynamicList'
@@ -17,7 +17,11 @@ const SCREEN_HEIGHT=Dimensions.get("window").height
 
 export default function AddRefuelingPage(){
 
+    const route=useRoute()
+    const {isEdit}=route.params
+
     const safeAreaInsets=useSafeAreaInsets()
+    const selectedRecordItem=useMileageAppStore((state)=>state.selectedRecordItem)
     const addRecordForVehicle=useMileageAppStore((state)=>state.addRecordForVehicles)
 
     const caleRef=useRef(null)
@@ -100,7 +104,7 @@ export default function AddRefuelingPage(){
                 <Pressable onPress={handleGoBack} style={styles.arrowLeftIcon}>
                     <Icons.arrowleft width={25} height={25} fill={"white"}/>
                 </Pressable>
-                <Text style={styles.title}>Add Refuelling Record</Text>
+                <Text style={styles.title}>{isEdit ? "Edit" : "Add"} Refuelling Record</Text>
                 <View style={{marginTop:30}}/>
                 <Pressable style={styles.inputBox} onPress={handleOpenVehicleNamePopup}>
                     <Text style={styles.vehicleName} numberOfLines={1} ellipsizeMode='tail'>{vehicleItem && Object.keys(vehicleItem).length!==0 ? vehicleItem.vehicle_name : "Select a vehicle name"}</Text>
@@ -179,11 +183,11 @@ export default function AddRefuelingPage(){
                 {
                 isAddenabled ?
                 <Pressable style={styles.addBtn} onPress={handleAddRefuelling}>
-                    <Text style={[styles.btnText, {color:"white"}]}>Add</Text>
+                    <Text style={[styles.btnText, {color:"white"}]}>{isEdit ? "Save" : "Add"}</Text>
                 </Pressable>
                 :
                 <View style={[styles.addBtn, {backgroundColor:"#B0B0B0"}]}>
-                    <Text style={[styles.btnText, {color:"black"}]}>Add</Text>
+                    <Text style={[styles.btnText, {color:"black"}]}>{isEdit ? "Save" : "Add"}</Text>
                 </View>
                 }
             </View>

@@ -41,6 +41,10 @@ export default function RefuelingRecordDetailsPage(){
         navigation.goBack()
     }
 
+    const handleEditRecordDet=()=>{
+        navigation.navigate('AddRefuelingPage', {isEdit:true})
+    }
+
     return(
         <View style={[styles.container, {paddingLeft: safeAreaInsets.left, paddingRight:safeAreaInsets.right, paddingBottom:safeAreaInsets.bottom}]}>
             <View style={[styles.topHeader, {paddingTop:safeAreaInsets.top}]}>
@@ -80,7 +84,7 @@ export default function RefuelingRecordDetailsPage(){
                         </View>
                     </View>
                 </View>
-                <Pressable style={styles.editBtnDiv}>
+                <Pressable style={styles.editBtnDiv} onPress={handleEditRecordDet}>
                     <Text style={styles.editBtnText}>Edit</Text>
                 </Pressable>
             </View>

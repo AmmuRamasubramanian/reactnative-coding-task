@@ -33,7 +33,7 @@ export default function RefuelingMainPage(){
     }
 
     const handleNavigateAddRefueling=()=>{
-        navigation.navigate('AddRefuelingPage')
+        navigation.navigate('AddRefuelingPage', {isEdit:false})
     }
 
     useEffect(()=>{
