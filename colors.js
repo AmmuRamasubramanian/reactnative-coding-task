@@ -1,5 +1,6 @@
 export default {
     greenBtnColor:'#0B3C58',
+    lightWhitish:'#F0F2F2',
     white:'#EAF4FC',
     logoOuterBlue:"#5C64D2",
     slateBlue:'#8798bc',

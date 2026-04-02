@@ -14,7 +14,8 @@ export default StyleSheet.create({
         borderColor:"black",
         borderStyle:"solid",
         zIndex:99,
-        borderRadius:8
+        borderRadius:8,
+        overflow:"hidden"
     },
     addVehicleItem:{
         height:40,

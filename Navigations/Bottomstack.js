@@ -5,6 +5,7 @@ import colors from "../colors";
 import Icons from "../Icons";
 import VehiclesMainPage from "../VehiclesComp/VehiclesMainPage/VehiclesMainPage";
 import Vehiclestack from "./Vehiclestack";
+import Refuelingstack from "./Refuelingstack";
 
 const Tab = createBottomTabNavigator();
 
@@ -44,8 +45,8 @@ export default function Bottomstack() {
             }
        })}
     >
-      <Tab.Screen name="Home" component={HomePage} />
-      <Tab.Screen  name="Refueling" component={HomePage} />
+      <Tab.Screen  name="Home" component={HomePage} />
+      <Tab.Screen  name="Refueling" component={Refuelingstack} />
       <Tab.Screen  name="Vehicles" component={Vehiclestack} />
     </Tab.Navigator>
   );

@@ -15,25 +15,28 @@ export default StyleSheet.create({
         top: 0,
         height: "100%",
     },
-    contentcontainer: {
+    innercontainer: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         flex: 1,
-        marginHorizontal: 15
+        marginHorizontal:15
     },
-    subTitle: {
-        color: "#0B3C58",
+    nofuleingRecordText:{
+         color: colors.greenBtnColor,
         fontSize: normalize(13),
-        marginTop: 10,
-        textAlign: "center"
+        fontWeight:"bold",
+        marginTop:10
     },
     descText: {
-        color: "#0B3C58",
+        color: colors.greenBtnColor,
         fontSize: normalize(13),
         marginTop: 15,
         textAlign: "center",
         lineHeight: 20
     },
     addvehicleBtn: {
-        backgroundColor: "#0B3C58",
+        backgroundColor: colors.greenBtnColor,
         height: 40,
         minHeight: 40,
         display: "flex",
@@ -48,34 +51,34 @@ export default StyleSheet.create({
         color: "white",
         fontSize: normalize(14),
     },
-    innercontainer: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flex:0.9
-    },
-    mainTitle:{
-        color:colors.greenBtnColor,
-        fontSize:normalize(17),
-        textAlign:"center",
-        marginTop:15
-    },
-    vehicleName:{
-        color:colors.greenBtnColor,
-        fontSize:normalize(12)
-    },
-    vehicleType:{
-        color:colors.greenBtnColor,
-        fontSize:normalize(12)
-    },
-    vehicleEngineCC:{
-         color:colors.greenBtnColor,
-        fontSize:normalize(12)
-    },
-    bottomflexcontainer:{
+    titleDiv:{
         display:"flex",
         alignItems:"center",
-        justifyContent:"space-between",
-        flexDirection:"row"
+        justifyContent:"center",
+        borderBottomWidth:0.8,
+        borderBottomStyle:"solid",
+        borderBottomColor:colors.greenBtnColor,
+        width:"100%",
+        paddingBottom:10,
+        marginTop:15
+    },
+    title:{
+        color:colors.greenBtnColor,
+        fontSize:normalize(17),
+        textAlign:"center"
+    },
+    addRecordBtn:{
+        height:50,
+        minHeight:50,
+        width:50,
+        minWidth:50,
+        borderRadius:50,
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center",
+        backgroundColor:colors.greenBtnColor,
+        position:"absolute",
+        bottom:10,
+        right:10
     }
 })

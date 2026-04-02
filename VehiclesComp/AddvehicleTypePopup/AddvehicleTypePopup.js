@@ -13,9 +13,10 @@ const AddvehicleTypePopup=memo(({vehicleType, handleChangeVehicleType})=>{
         <View style={styles.container}>
             {
                 arr.map((item, index)=>{
+                    const isSelected=item===vehicleType
                     return(
                         <React.Fragment key={index}>
-                            <Pressable onPress={()=>handleChangeVehicleType(item)} style={styles.addVehicleItem}>
+                            <Pressable onPress={()=>handleChangeVehicleType(item)} style={[styles.addVehicleItem, isSelected && {backgroundColor:"#D9F0F1"}]}>
                             <Text style={styles.addVehicleText}>{item}</Text>
                             </Pressable>
                         </React.Fragment>
