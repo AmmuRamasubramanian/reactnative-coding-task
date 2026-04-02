@@ -45,7 +45,7 @@ export default function RefuelingMainPage(){
     },[vehicleslist])
 
     const handleNavigateRecordItem=(item)=>{
-        selectNewRecordItem(item)
+        selectNewRecordItem({...item, "vehicle_name":item?.vehicle_name})
         navigation.navigate("RefuelingRecordDetailsPage")
     }
 

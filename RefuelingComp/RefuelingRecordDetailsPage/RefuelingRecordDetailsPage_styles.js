@@ -9,7 +9,8 @@ export default StyleSheet.create({
     },
     contentContainer:{
         flex:1,
-        marginHorizontal:15
+        marginHorizontal:15,
+        marginTop:30
     },
     editBtnDiv:{
         height:50,
@@ -51,5 +52,26 @@ export default StyleSheet.create({
     },
     detailGap:{
         marginTop:14
+    },
+    topHeader:{
+        backgroundColor:"white",
+    },
+    dateFlexdiv:{
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center",
+        paddingBottom:30,
+        marginTop:10
+    },
+    dateText:{
+        color:colors.greenBtnColor,
+        fontFamily:"inter_semibold",
+        fontSize:normalize(18)
+    },
+    vehicleName:{
+        color:colors.greenBtnColor,
+        fontFamily:"inter_medium",
+        fontSize:normalize(15),
+        marginTop:10
     }
 })
