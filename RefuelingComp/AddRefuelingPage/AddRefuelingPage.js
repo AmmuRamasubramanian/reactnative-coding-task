@@ -164,6 +164,7 @@ export default function AddRefuelingPage(){
                             placeholderTextColor={colors.greenBtnColor}
                             keyboardType='numeric'
                             style={styles.inputText}
+                            maxLength={15}
                         />
                     </View>
                 </View>

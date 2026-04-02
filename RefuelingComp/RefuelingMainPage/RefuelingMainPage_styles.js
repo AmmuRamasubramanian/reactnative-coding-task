@@ -130,8 +130,9 @@ export default StyleSheet.create({
     recordItem:{
         display:"flex",
         alignItems:"center",
-        paddingHorizontal:14,
-        paddingVertical:8,  
+        paddingRight:14,
+        paddingLeft:10,
+        paddingVertical:12,  
         borderRadius:6,
         backgroundColor:"white",
         flexDirection:"row",
@@ -146,5 +147,22 @@ export default StyleSheet.create({
         display:"flex",
         flexDirection:"row",
         alignItems:"center",
+    },
+    dateTextOfRecord:{
+        color:colors.greenBtnColor,
+        fontFamily:"inter_medium",
+        fontSize:normalize(13)
+    },
+    fuelText:{
+        color:colors.greenBtnColor,
+        fontFamily:"inter_reg",
+        fontSize:normalize(11),
+        marginTop:5
+    },
+    priceText:{
+        color:colors.greenBtnColor,
+        fontFamily:"inter_medium",
+        fontSize:normalize(13),
+        marginTop:5
     }
 })

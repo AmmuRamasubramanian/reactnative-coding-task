@@ -9,6 +9,7 @@ import colors from '../../colors'
 import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { FlashList } from '@shopify/flash-list'
 import isEqual from 'lodash.isequal'
+import moment from 'moment'
 
 export default function RefuelingMainPage(){
 
@@ -41,11 +42,19 @@ export default function RefuelingMainPage(){
     },[vehicleslist])
 
     const MemoizedRenderItem=memo(({item, isFirstIndex})=>{
+
+        const dateText=moment(item.date, "YYYY-MM-DD").format("ddd, DD MMM ‘YY")
+
         return(
             <View style={[styles.recordItem, {marginTop:20}]}>
                 <View style={styles.recordInnerflex}>
-                    <Icons.Rose width={24} height={24}/>
+                    <Icons.Rose width={28} height={28}/>
+                    <View style={{marginLeft:10}}>
+                        <Text style={styles.dateTextOfRecord} numberOfLines={1} ellipsizeMode='tail'>{dateText}</Text>
+                        <Text style={styles.fuelText} numberOfLines={1} ellipsizeMode='tail'>{item.fuel_consumption}L</Text>
+                    </View>
                 </View>
+                <Text style={styles.priceText} numberOfLines={1} ellipsizeMode='tail'>${item.price}</Text>
             </View>
         )
     },(r1, r2)=>{
