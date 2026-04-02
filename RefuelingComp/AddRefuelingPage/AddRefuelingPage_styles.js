@@ -7,12 +7,23 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: "#F0F2F2"
     },
+    topHeaderStyle:{
+        position:"absolute",
+        top:0,
+        width:"100%",
+        height:120
+    },
+    arrowLeftIcon:{
+        position:"absolute",
+        top:0,
+        left:0
+    },
     title: {
         color: colors.greenBtnColor,
-        fontSize: normalize(17),
+        fontSize: normalize(19),
         textAlign: "center",
-        marginTop: 15,
-        fontFamily:"inter_medium"
+        fontFamily: "inter_medium",
+        marginTop: 40,
     },
     inputBox: {
         height: 50,
@@ -22,33 +33,35 @@ export default StyleSheet.create({
         flexDirection: "row",
         paddingHorizontal: 12,
         borderRadius: 8,
-        borderWidth: 0.8,
-        borderColor: colors.greenBtnColor,
-        borderStyle: "solid",
         backgroundColor: "white",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
     },
     inputText: {
         color: colors.greenBtnColor,
-        fontSize: normalize(12),
-        fontFamily:"inter_medium",
-        flex:1
+        fontSize: normalize(13),
+        fontFamily: "inter_medium",
+        flex: 1
     },
     contentcontainer: {
         marginHorizontal: 15,
-        flex:1
+        flex: 1
     },
     inputGap: {
-        marginTop: 15
+        marginTop: 20
     },
     vehicleName: {
         color: colors.greenBtnColor,
         fontSize: normalize(12),
-        fontFamily:"inter_medium"
+        fontFamily: "inter_medium"
     },
     inputTitle: {
         color: colors.greenBtnColor,
         fontSize: normalize(12),
-        fontFamily:"inter_medium"
+        fontFamily: "inter_medium"
     },
     flexcontainerOfBtns: {
         display: "flex",
@@ -61,7 +74,7 @@ export default StyleSheet.create({
         display: "flex",
         alignItems: "center",
         marginBottom: 10,
-        marginHorizontal:15
+        marginHorizontal: 15
     },
     cancelBtn: {
         width: "48%",
@@ -90,7 +103,7 @@ export default StyleSheet.create({
     btnText: {
         color: colors.greenBtnColor,
         fontSize: normalize(13),
-        fontFamily:"inter_medium"
+        fontFamily: "inter_medium"
     },
     //sheet popup--------------------------------------------------------
     contentContainerOfBackdrop: {
@@ -121,6 +134,6 @@ export default StyleSheet.create({
     vehicleNameInPopup: {
         color: colors.greenBtnColor,
         fontSize: normalize(12),
-        fontFamily:"inter_medium"
+        fontFamily: "inter_medium"
     }
 })

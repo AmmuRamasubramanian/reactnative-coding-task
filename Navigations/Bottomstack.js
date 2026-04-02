@@ -14,7 +14,7 @@ export default function Bottomstack() {
 
     const getFocusedRouteName=useCallback((route)=>{
         const routeName = getFocusedRouteNameFromRoute(route) ?? "";
-        if(routeName==="AddVehiclesPage"){
+        if(routeName==="AddVehiclesPage" || routeName==="AddRefuelingPage"){
             return{"display":"none"}
         }
         return styles.tabBarStyle

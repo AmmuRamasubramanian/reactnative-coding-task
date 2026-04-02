@@ -7,6 +7,8 @@ import {Calendar, LocaleConfig} from 'react-native-calendars';
 import BottomSheet, { BottomSheetBackdrop, BottomSheetView } from '@gorhom/bottom-sheet'
 import { useMileageAppStore } from '../../store'
 import { useNavigation } from '@react-navigation/native'
+import Icons from '../../Icons'
+import { Image } from 'expo-image'
 
 export default function AddRefuelingPage(){
 
@@ -88,8 +90,15 @@ export default function AddRefuelingPage(){
     }
 
     return(
-        <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right}]}>
+        <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right, paddingBottom:safeAreaInsets.bottom}]}>
+            <Image
+                source={Icons.topStyle}
+                style={styles.topHeaderStyle}
+            />
             <View style={styles.contentcontainer}>
+                <Pressable onPress={handleGoBack} style={styles.arrowLeftIcon}>
+                    <Icons.arrowleft width={25} height={25} fill={"white"}/>
+                </Pressable>
                 <Text style={styles.title}>Add Refuelling Record</Text>
                 <View style={{marginTop:30}}/>
                 <Pressable style={styles.inputBox} onPress={handleOpenVehicleNamePopup}>
