@@ -59,65 +59,79 @@ export default function AddVehiclesPage(){
         setVehicleType(type)
     }
 
+    const handleAddAvatarForVehicle=async()=>{
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ['images'],
+            allowsEditing: true,
+            quality: 1,
+            aspect: type==="avatar" ? [1, 1]: [2, 1],
+        });
+        if (!result.canceled) {
+            const assetType=result.assets[0].mimeType
+        }
+    }
 
     return(
         <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right}]}>
-            <Text style={styles.title}>Add Vehicles</Text>
-            <TouchableWithoutFeedback onPress={handleCloseShowVehicleType}>
-            <View style={styles.contentContainer}>
-            <View style={{flex:1, marginTop:20}}>
-                <View style={styles.inputBox}>
-                    <TextInput
-                        value={vehicleName}
-                        onChangeText={handleChangeVehicleName}
-                        autoCapitalize='none'
-                        autoCorrect={false}
-                        selectionColor={"black"}
-                        placeholder='Vehicle name'
-                        placeholderTextColor={colors.greenBtnColor}
-                        style={styles.inputText}
-                    />
-                </View>
-                <View style={styles.inputGap}/>
-                <Pressable style={styles.inputBox} onPress={handleToggleShowVehicleType}>
-                    <Text style={[styles.inputText, {color:colors.greenBtnColor}]}>{vehicleType && vehicleType.length!==0 ? vehicleType : "Vehicle Type"}</Text>
+            <TouchableWithoutFeedback style={{flex:1}} onPress={handleCloseShowVehicleType}>
+                <Text style={styles.title}>Add Vehicles</Text>
+                <Pressable style={styles.avatarEmptyOuter}>
+                    
                 </Pressable>
-                <View style={styles.inputGap}/>
-                <View style={styles.inputBox}>
-                    <TextInput
-                        value={engineCC}
-                        onChangeText={handleChangeengineCC}
-                        autoCapitalize='none'
-                        autoCorrect={false}
-                        selectionColor={"black"}
-                        placeholder='Engine CC'
-                        placeholderTextColor={colors.greenBtnColor}
-                        style={styles.inputText}
-                        keyboardAppearance='numeric'
-                    />
+                <View style={styles.contentContainer}>
+                <View style={{flex:1, marginTop:20}}>
+                    <View style={styles.inputBox}>
+                        <TextInput
+                            value={vehicleName}
+                            onChangeText={handleChangeVehicleName}
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            selectionColor={"black"}
+                            placeholder='Vehicle name'
+                            placeholderTextColor={colors.greenBtnColor}
+                            style={styles.inputText}
+                        />
+                    </View>
+                    <View style={styles.inputGap}/>
+                    <Pressable style={styles.inputBox} onPress={handleToggleShowVehicleType}>
+                        <Text style={[styles.inputText, {color:colors.greenBtnColor}]}>{vehicleType && vehicleType.length!==0 ? vehicleType : "Vehicle Type"}</Text>
+                    </Pressable>
+                    <View style={styles.inputGap}/>
+                    <View style={styles.inputBox}>
+                        <TextInput
+                            value={engineCC}
+                            onChangeText={handleChangeengineCC}
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            selectionColor={"black"}
+                            placeholder='Engine CC'
+                            placeholderTextColor={colors.greenBtnColor}
+                            style={styles.inputText}
+                            keyboardAppearance='numeric'
+                        />
+                    </View>
+                    {
+                        showvehicleType &&
+                        <AddvehicleTypePopup handleChangeVehicleType={handleChangeVehicleType} vehicleType={vehicleType}/>
+                    }
                 </View>
-                {
-                    showvehicleType &&
-                    <AddvehicleTypePopup handleChangeVehicleType={handleChangeVehicleType} vehicleType={vehicleType}/>
-                }
-            </View>
-            <View style={styles.btnflexcontainer}>
-                <Pressable style={styles.cancelBtn} onPress={handleGoBack}>
-                    <Text style={styles.btnText}>Cancel</Text>
-                </Pressable>
-                <View style={{marginLeft:10}}/>
-                {
-                isAddBtnEnabled ?
-                <Pressable style={styles.addBtn} onPress={handleAddVehicle}>
-                    <Text style={[styles.btnText, {color:"white"}]}>Add</Text>
-                </Pressable>
-                :
-                <View style={[styles.addBtn, {backgroundColor:"#B0B0B0"}]}>
-                    <Text style={[styles.btnText, {color:"black"}]}>Add</Text>
+                <View style={styles.btnflexcontainer}>
+                    <Pressable style={styles.cancelBtn} onPress={handleGoBack}>
+                        <Text style={styles.btnText}>Cancel</Text>
+                    </Pressable>
+                    <View style={{marginLeft:10}}/>
+                    {
+                    isAddBtnEnabled ?
+                    <Pressable style={styles.addBtn} onPress={handleAddVehicle}>
+                        <Text style={[styles.btnText, {color:"white"}]}>Add</Text>
+                    </Pressable>
+                    :
+                    <View style={[styles.addBtn, {backgroundColor:"#B0B0B0"}]}>
+                        <Text style={[styles.btnText, {color:"black"}]}>Add</Text>
+                    </View>
+                    }
                 </View>
-                }
-            </View>
-            </View>
+                </View>
             </TouchableWithoutFeedback>
         </View>
     )

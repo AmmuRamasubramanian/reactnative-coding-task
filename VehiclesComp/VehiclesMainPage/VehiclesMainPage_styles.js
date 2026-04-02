@@ -32,7 +32,7 @@ export default StyleSheet.create({
         marginTop: 15,
         textAlign: "center",
         lineHeight: 20,
-        fontFamily: "inter_reg"
+        fontFamily: "inter_medium"
     },
     addvehicleBtn: {
         backgroundColor: colors.greenBtnColor,
@@ -57,23 +57,25 @@ export default StyleSheet.create({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        flex: 0.9
+        flex: 0.9,
+        marginHorizontal: 15
     },
     mainTitle: {
         color: colors.greenBtnColor,
         fontSize: normalize(17),
         textAlign: "center",
-        marginTop: 15,
         fontFamily: "inter_semibold"
     },
     mainTitleDiv: {
-        width: "100%",
-        paddingBottom: 15,
-        borderBottomColor: colors.greenBtnColor,
-        borderBottomStyle: "solid",
-        borderBottomWidth: 0.8,
         display: "flex",
         alignItems: "center",
+        justifyContent: "center",
+        borderBottomWidth: 0.8,
+        borderBottomStyle: "solid",
+        borderBottomColor: colors.greenBtnColor,
+        width: "100%",
+        paddingBottom: 10,
+        marginTop: 15
     },
     vehicleName: {
         color: colors.greenBtnColor,

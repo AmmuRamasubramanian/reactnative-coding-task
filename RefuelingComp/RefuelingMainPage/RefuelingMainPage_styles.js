@@ -19,7 +19,7 @@ export default StyleSheet.create({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        flex: 0.92,
+        flex: 0.9,
         marginHorizontal: 15
     },
     nofuleingRecordText: {
@@ -43,7 +43,7 @@ export default StyleSheet.create({
         marginTop: 15,
         textAlign: "center",
         lineHeight: 20,
-        fontFamily:"inter_reg"
+        fontFamily: "inter_medium"
     },
     addvehicleBtn: {
         backgroundColor: colors.greenBtnColor,
@@ -56,13 +56,13 @@ export default StyleSheet.create({
         marginTop: 15,
         alignSelf: "center",
         paddingHorizontal: 15,
-        flexDirection:"row"
+        flexDirection: "row"
     },
     addVehicleText: {
         color: "white",
-        fontSize: normalize(13),
-        fontFamily:"inter_medium",
-        marginRight:10
+        fontSize: normalize(14),
+        marginRight: 10,
+        fontFamily: "inter_medium"
     },
     titleDiv: {
         display: "flex",
