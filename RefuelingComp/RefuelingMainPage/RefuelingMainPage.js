@@ -18,6 +18,7 @@ export default function RefuelingMainPage(){
 
     const vehicleslist=useMileageAppStore((state)=>state.vehicles)
     const recordslist=useMileageAppStore((state)=>state.records)
+    const selectNewRecordItem=useMileageAppStore((state)=>state.selectNewRecordItem)
 
     const [selectedVehicleItem, setSelectedVehicleItem]=useState(null)
     const selectedRecords=useMemo(()=>{
@@ -38,15 +39,22 @@ export default function RefuelingMainPage(){
     useEffect(()=>{
         if(vehicleslist && vehicleslist.length!==0){
             setSelectedVehicleItem(vehicleslist[0])
+        }else{
+            setSelectedVehicleItem(null)
         }
     },[vehicleslist])
+
+    const handleNavigateRecordItem=(item)=>{
+        selectNewRecordItem(item)
+        navigation.navigate("RefuelingRecordDetailsPage")
+    }
 
     const MemoizedRenderItem=memo(({item, isFirstIndex})=>{
 
         const dateText=moment(item.date, "YYYY-MM-DD").format("ddd, DD MMM ‘YY")
 
         return(
-            <View style={[styles.recordItem, {marginTop:15}]}>
+            <Pressable onPress={()=>handleNavigateRecordItem(item)} style={[styles.recordItem, {marginTop:15}]}>
                 <View style={styles.recordInnerflex}>
                     <Icons.Rose width={28} height={28}/>
                     <View style={{marginLeft:10}}>
@@ -55,7 +63,7 @@ export default function RefuelingMainPage(){
                     </View>
                 </View>
                 <Text style={styles.priceText} numberOfLines={1} ellipsizeMode='tail'>${item.price}</Text>
-            </View>
+            </Pressable>
         )
     },(r1, r2)=>{
         return isEqual(r1.item, r2.item) && r1.isFirstIndex===r2.isFirstIndex

@@ -14,4 +14,6 @@ export const useMileageAppStore=create((set)=>({
             ],
         },
     })),
+    selectedRecordItem:{},
+    selectNewRecordItem:(value)=>set((state)=>({selectedRecordItem:value}))
 }))
