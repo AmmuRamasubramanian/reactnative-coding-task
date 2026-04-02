@@ -177,6 +177,7 @@ export default function AddVehiclesPage(){
                     showSuccess={showSuccess}
                     vehicleName={vehicleName}
                     avatar={avatar}
+                    vehicleType={vehicleType}
                 />
                 </>
             }

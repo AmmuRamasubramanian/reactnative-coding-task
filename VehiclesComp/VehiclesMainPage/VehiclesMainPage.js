@@ -35,7 +35,7 @@ export default function VehiclesMainPage(){
                     :
                     <>
                     <Image
-                        source={Icons.noImgForVehicle}
+                        source={item.vehicle_type==="4 Wheeler" ? Icons.noImgFor4wheelVehicle : Icons.noImgForVehicle}
                         style={styles.vehicleAvatarStyle}
                     />
                     </>

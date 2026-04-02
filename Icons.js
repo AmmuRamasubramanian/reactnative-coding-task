@@ -15,6 +15,7 @@ import topStyle from './assets/svgicons/topStyle.png'
 import arrowleft from './assets/svgicons/arrowleft.svg'
 import chevronright from './assets/svgicons/chevronright.svg'
 import noImgForVehicle from './assets/svgicons/noImgForVehicle.png'
+import noImgFor4wheelVehicle from './assets/svgicons/noImgFor4wheelVehicle.png'
 import Onboardingscreen from './assets/svgicons/Onboardingscreen.png'
 import confetti from './assets/svgicons/confetti.png'
 
@@ -37,5 +38,6 @@ export default{
     chevronright,
     noImgForVehicle,
     confetti,
-    Onboardingscreen
+    Onboardingscreen,
+    noImgFor4wheelVehicle
 }

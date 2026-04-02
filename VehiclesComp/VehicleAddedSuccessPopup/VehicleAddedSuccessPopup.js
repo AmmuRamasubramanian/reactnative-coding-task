@@ -7,7 +7,7 @@ import { Image } from 'expo-image'
 import Icons from '../../Icons'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-const VehicleAddedSuccessPopup=memo(({showSuccess, vehicleName, avatar})=>{
+const VehicleAddedSuccessPopup=memo(({showSuccess, vehicleName, avatar, vehicleType})=>{
 
     const safeAreaInsets=useSafeAreaInsets()
 
@@ -26,7 +26,7 @@ const VehicleAddedSuccessPopup=memo(({showSuccess, vehicleName, avatar})=>{
                         avatar?
                         <Image source={avatar} style={styles.avatarImg}/>
                         :
-                        <Image source={Icons.noImgForVehicle} style={styles.avatarImg}/>
+                        <Image source={vehicleType==="4 Wheeler" ? Icons.noImgFor4wheelVehicle : Icons.noImgForVehicle} style={styles.avatarImg}/>
                     }
                     <Text style={styles.vehicleName} numberOfLines={1} ellipsizeMode='tail'>{vehicleName}</Text>
                     <Text style={styles.vehicleAddedText}>Vehicle Added!</Text>
