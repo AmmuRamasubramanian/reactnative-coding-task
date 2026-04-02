@@ -85,4 +85,9 @@ export default StyleSheet.create({
         top: 0,
         left: 15
     },
+    binIconOuter: {
+        position: "absolute",
+        top: 0,
+        right: 15
+    },
 })

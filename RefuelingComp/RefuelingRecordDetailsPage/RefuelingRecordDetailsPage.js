@@ -23,6 +23,10 @@ export default function RefuelingRecordDetailsPage(){
         navigation.goBack()
     } 
 
+    const onPressDeleteRecord=()=>{
+
+    }
+
     return(
         <View style={[styles.container, {paddingLeft: safeAreaInsets.left, paddingRight:safeAreaInsets.right, paddingBottom:safeAreaInsets.bottom}]}>
             <View style={[styles.topHeader, {paddingTop:safeAreaInsets.top}]}>
@@ -33,6 +37,9 @@ export default function RefuelingRecordDetailsPage(){
                     <Text style={styles.dateText}>{dateText}</Text>
                     <Text style={styles.vehicleName}>{truncatedName}</Text>
                     <Text style={styles.addedTimeText}>Added on {addedTime}</Text>
+                    <Pressable onPress={onPressDeleteRecord} style={styles.binIconOuter}>
+                        <Icons.trash width={20} height={20} fill={colors.pinkishred}/>
+                    </Pressable>
                 </View>
             </View>
             <View style={[styles.contentContainer]}>
