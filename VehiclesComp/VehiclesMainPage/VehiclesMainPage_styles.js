@@ -17,7 +17,8 @@ export default StyleSheet.create({
     },
     contentcontainer: {
         flex: 1,
-        marginHorizontal: 15
+        marginHorizontal: 15,
+        width: "100%"
     },
     subTitle: {
         color: colors.greenBtnColor,
@@ -31,7 +32,7 @@ export default StyleSheet.create({
         marginTop: 15,
         textAlign: "center",
         lineHeight: 20,
-        fontFamily:"inter_reg"
+        fontFamily: "inter_reg"
     },
     addvehicleBtn: {
         backgroundColor: colors.greenBtnColor,
@@ -44,42 +45,66 @@ export default StyleSheet.create({
         marginTop: 15,
         alignSelf: "center",
         paddingHorizontal: 15,
-        flexDirection:"row"
+        flexDirection: "row"
     },
     addVehicleText: {
         color: "white",
         fontSize: normalize(14),
-        marginRight:10,
-        fontFamily:"inter_medium"
+        marginRight: 10,
+        fontFamily: "inter_medium"
     },
     innercontainer: {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        flex:0.9
+        flex: 0.9
     },
-    mainTitle:{
-        color:colors.greenBtnColor,
-        fontSize:normalize(17),
-        textAlign:"center",
-        marginTop:15
+    mainTitle: {
+        color: colors.greenBtnColor,
+        fontSize: normalize(17),
+        textAlign: "center",
+        marginTop: 15,
+        fontFamily: "inter_semibold"
     },
-    vehicleName:{
-        color:colors.greenBtnColor,
-        fontSize:normalize(12)
+    mainTitleDiv: {
+        width: "100%",
+        paddingBottom: 15,
+        borderBottomColor: colors.greenBtnColor,
+        borderBottomStyle: "solid",
+        borderBottomWidth: 0.8,
+        display: "flex",
+        alignItems: "center",
     },
-    vehicleType:{
-        color:colors.greenBtnColor,
-        fontSize:normalize(12)
+    vehicleName: {
+        color: colors.greenBtnColor,
+        fontSize: normalize(12)
     },
-    vehicleEngineCC:{
-         color:colors.greenBtnColor,
-        fontSize:normalize(12)
+    vehicleType: {
+        color: colors.greenBtnColor,
+        fontSize: normalize(12)
     },
-    bottomflexcontainer:{
-        display:"flex",
-        alignItems:"center",
-        justifyContent:"space-between",
-        flexDirection:"row"
+    vehicleEngineCC: {
+        color: colors.greenBtnColor,
+        fontSize: normalize(12)
+    },
+    bottomflexcontainer: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexDirection: "row"
+    },
+    addRecordBtn: {
+        height: 50,
+        minHeight: 50,
+        width: 50,
+        minWidth: 50,
+        borderRadius: 50,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: colors.greenBtnColor,
+        position: "absolute",
+        bottom: 10,
+        right: 10
     }
 })

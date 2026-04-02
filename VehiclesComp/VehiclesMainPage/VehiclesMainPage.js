@@ -52,6 +52,12 @@ export default function VehiclesMainPage(){
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
             />
+            {
+                !(vehicleslist && vehicleslist.length!==0) &&
+                <View style={styles.mainTitleDiv}>
+                    <Text style={styles.mainTitle}>Vehicles</Text>
+                </View>
+            }
             <View style={styles.contentcontainer}>
                 {
                     vehicleslist && vehicleslist.length!==0 ?
@@ -63,8 +69,12 @@ export default function VehiclesMainPage(){
                         showsVerticalScrollIndicator={false}
                         keyExtractor={(item)=>item.id.toString()}
                     />
+                    <Pressable style={styles.addRecordBtn} onPress={handleNavigateaddvehicles}>
+                        <Icons.plusIcon width={20} height={20} fill="white"/>
+                    </Pressable>
                     </>
                     :
+                    <>
                     <View style={styles.innercontainer}>
                     <Icons.Milestone width={100} height={100}/>
                     <Text style={styles.descText}>Add vehicle to start tracking its refuelling and performance</Text>
@@ -73,6 +83,7 @@ export default function VehiclesMainPage(){
                         <Icons.arrowright width={14} height={14} fill={"white"}/>
                     </Pressable>
                     </View>
+                    </>
                 }
                 </View>
         </View>
