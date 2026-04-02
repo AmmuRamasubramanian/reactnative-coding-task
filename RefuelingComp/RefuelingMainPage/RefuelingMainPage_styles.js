@@ -124,7 +124,6 @@ export default StyleSheet.create({
     },
     contentContainerrecord:{
         flex:1,
-        marginTop:10,
         marginHorizontal:15
     },
     recordItem:{

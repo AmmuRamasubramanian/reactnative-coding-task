@@ -46,7 +46,7 @@ export default function RefuelingMainPage(){
         const dateText=moment(item.date, "YYYY-MM-DD").format("ddd, DD MMM ‘YY")
 
         return(
-            <View style={[styles.recordItem, {marginTop:20}]}>
+            <View style={[styles.recordItem, {marginTop:15}]}>
                 <View style={styles.recordInnerflex}>
                     <Icons.Rose width={28} height={28}/>
                     <View style={{marginLeft:10}}>
@@ -100,7 +100,7 @@ export default function RefuelingMainPage(){
                             keyExtractor={(item)=>item.id.toString()}
                             showsVerticalScrollIndicator={false}
                             estimatedItemSize={60}
-                            contentContainerStyle={{paddingBottom:100}}
+                            contentContainerStyle={{paddingBottom:100, paddingTop:15}}
                         />
                         </View>
                         </>

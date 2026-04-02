@@ -57,7 +57,8 @@ export default StyleSheet.create({
         color: colors.greenBtnColor,
         fontSize: normalize(12),
         fontFamily: "inter_medium",
-        maxWidth:"90%"
+        flex:1,
+        marginRight:10
     },
     inputTitle: {
         color: colors.greenBtnColor,
