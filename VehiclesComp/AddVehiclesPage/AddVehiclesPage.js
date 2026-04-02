@@ -7,6 +7,9 @@ import colors from '../../colors'
 import AddvehicleTypePopup from '../AddvehicleTypePopup/AddvehicleTypePopup'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useMileageAppStore } from '../../store'
+import Icons from '../../Icons'
+import * as ImagePicker from 'expo-image-picker'
+import { Image } from 'expo-image'
 
 export default function AddVehiclesPage(){
 
@@ -19,6 +22,7 @@ export default function AddVehiclesPage(){
     const [vehicleType, setVehicleType]=useState(null)
     const [engineCC, setEngineCC]=useState('')
     const [showvehicleType, setshowvehicleType]=useState(false)
+    const [avatar, setAvatar]=useState(null)
 
     const handleChangeVehicleName=(text)=>{
         setVehicleName(text)
@@ -45,7 +49,8 @@ export default function AddVehiclesPage(){
             "id":Date.now().toString(),
             "vehicle_name":vehicleName,
             "vehicle_type":vehicleType,
-            "engineCC":engineCC
+            "engineCC":engineCC,
+            "avatar":avatar
         }
         addVehicles(vehicleObj)
         navigation.goBack()
@@ -64,22 +69,35 @@ export default function AddVehiclesPage(){
             mediaTypes: ['images'],
             allowsEditing: true,
             quality: 1,
-            aspect: type==="avatar" ? [1, 1]: [2, 1],
+            aspect: [1, 1]
         });
         if (!result.canceled) {
-            const assetType=result.assets[0].mimeType
+            setAvatar(result.assets[0].uri)
         }
     }
 
     return(
-        <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right}]}>
+        <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right,  paddingBottom:safeAreaInsets.bottom}]}>
             <TouchableWithoutFeedback style={{flex:1}} onPress={handleCloseShowVehicleType}>
+                <View style={{flex:1}}>
                 <Text style={styles.title}>Add Vehicles</Text>
-                <Pressable style={styles.avatarEmptyOuter}>
-                    
+                <Pressable style={styles.avatarOuter} onPress={handleAddAvatarForVehicle}>
+                {
+                avatar ?
+                <>
+                    <Image
+                        source={avatar}
+                        style={styles.avatarStyle}
+                    />
+                </>
+                :
+                <View style={[styles.avatarEmptyOuter]}>
+                    <Icons.camera width={20} height={20} fill="white"/>
+                </View>
+                }
                 </Pressable>
                 <View style={styles.contentContainer}>
-                <View style={{flex:1, marginTop:20}}>
+                <View style={{flex:1, marginTop:25}}>
                     <View style={styles.inputBox}>
                         <TextInput
                             value={vehicleName}
@@ -130,6 +148,7 @@ export default function AddVehiclesPage(){
                         <Text style={[styles.btnText, {color:"black"}]}>Add</Text>
                     </View>
                     }
+                </View>
                 </View>
                 </View>
             </TouchableWithoutFeedback>

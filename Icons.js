@@ -10,6 +10,7 @@ import arrowright from './assets/svgicons/arrowright.svg'
 import user from './assets/svgicons/user.svg'
 import vehicles_unfilled from './assets/svgicons/vehicles_unfilled'
 import vehicles_filled from './assets/svgicons/vehicles_filled'
+import camera from './assets/svgicons/camera.svg'
 
 export default{
     filterFilled,
@@ -23,5 +24,6 @@ export default{
     Union,
     user,
     vehicles_unfilled,
-    vehicles_filled
+    vehicles_filled,
+    camera
 }

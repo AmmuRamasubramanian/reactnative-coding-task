@@ -26,14 +26,11 @@ export default StyleSheet.create({
         flexDirection: "row",
         paddingHorizontal: 12,
         borderRadius: 8,
-        borderWidth: 0.8,
-        borderColor: "#0B3C58",
-        borderStyle: "solid",
         backgroundColor: "white"
     },
     inputText: {
         color: colors.greenBtnColor,
-        fontSize: normalize(12),
+        fontSize: normalize(13),
         fontFamily: "inter_medium",
         flex: 1
     },
@@ -64,9 +61,7 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 8,
-        borderWidth: 0.8,
         backgroundColor: colors.greenBtnColor,
-        borderStyle: "solid",
         height: 45,
         minHeight: 45
     },
@@ -82,15 +77,30 @@ export default StyleSheet.create({
         fontFamily: "inter_medium",
         marginTop: 15
     },
+    avatarOuter:{
+        minHeight:125,
+        height:125,
+        width:125,
+        minWidth:125,
+        alignSelf:"center",
+        marginTop:25
+    },
+    avatarStyle:{
+        minHeight:125,
+        height:125,
+        width:125,
+        minWidth:125,
+        borderRadius:125,
+    },
     avatarEmptyOuter:{
-        borderRadius:60,
-        minHeight:60,
-        height:60,
-        width:60,
-        minWidth:60,
+        minHeight:125,
+        height:125,
+        width:125,
+        minWidth:125,
         display:"flex",
         alignItems:"center",
         justifyContent:"center",
+        borderRadius:125,
         backgroundColor:"#2596be"
     }
 })

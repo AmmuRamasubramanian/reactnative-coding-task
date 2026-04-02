@@ -46,12 +46,12 @@ export default function Bottomstack() {
                     }
                     else if(route.name==="Vehicles"){
                         if(!focused){
-                            IconName=Icons.vehicles_filled
+                            IconName=Icons.vehicles_unfilled
                         }else{
                             IconName=Icons.vehicles_filled
                         }
                     }
-                    return <IconName fill={color} width={14} height={14}/>
+                    return <IconName fill={color} width={18} height={18}/>
                 }
         })}
         >
