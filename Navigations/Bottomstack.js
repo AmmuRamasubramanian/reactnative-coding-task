@@ -36,9 +36,9 @@ export default function Bottomstack() {
                 }
                 else if(route.name==="Vehicles"){
                     if(!focused){
-                        IconName=Icons.houseunfilled
+                        IconName=Icons.vehicles_filled
                     }else{
-                        IconName=Icons.housefilled
+                        IconName=Icons.vehicles_filled
                     }
                 }
                 return <IconName fill={color} width={14} height={14}/>

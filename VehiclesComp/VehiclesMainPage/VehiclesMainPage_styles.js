@@ -43,7 +43,8 @@ export default StyleSheet.create({
         borderRadius: 10,
         marginTop: 15,
         alignSelf: "center",
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
+        flexDirection:"row"
     },
     addVehicleText: {
         color: "white",

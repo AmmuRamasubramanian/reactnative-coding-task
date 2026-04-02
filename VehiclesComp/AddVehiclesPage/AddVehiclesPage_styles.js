@@ -32,8 +32,10 @@ export default StyleSheet.create({
         backgroundColor:"white"
     },
     inputText:{
-        color:"black",
+        color:colors.greenBtnColor,
         fontSize:normalize(12),
+        fontFamily:"inter_medium",
+        flex:1
     },
     inputGap:{
         marginTop:15
@@ -70,12 +72,14 @@ export default StyleSheet.create({
     },
     btnText:{
         color:"black",
-        fontSize:normalize(13)
+        fontSize:normalize(13),
+        fontFamily:"inter_medium"
     },
     title:{
         color:colors.greenBtnColor,
         fontSize:normalize(17),
         textAlign:"center",
+        fontFamily:"inter_medium",
         marginTop:15
     }
 })

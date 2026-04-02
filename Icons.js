@@ -8,6 +8,8 @@ import plusIcon from './assets/svgicons/plusIcon.svg'
 import Union from './assets/svgicons/Union.svg'
 import arrowright from './assets/svgicons/arrowright.svg'
 import user from './assets/svgicons/user.svg'
+import vehicles_unfilled from './assets/svgicons/vehicles_unfilled'
+import vehicles_filled from './assets/svgicons/vehicles_filled'
 
 export default{
     filterFilled,
@@ -19,5 +21,7 @@ export default{
     plusIcon,
     arrowright,
     Union,
-    user
+    user,
+    vehicles_unfilled,
+    vehicles_filled
 }

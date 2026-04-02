@@ -25,7 +25,7 @@ export default function RefuelingMainPage(){
     return(
         <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right}]}>
             {
-                !(vehicleslist && vehicleslist.length!==0) ?
+                (vehicleslist && vehicleslist.length!==0) ?
                 <>
                 {
                     records && records.length!==0 ?
