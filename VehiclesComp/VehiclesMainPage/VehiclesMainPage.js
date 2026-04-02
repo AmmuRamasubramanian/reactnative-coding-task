@@ -21,12 +21,25 @@ export default function VehiclesMainPage(){
         navigation.navigate('AddVehiclesPage')
     }
 
-    const MemoizedRenderItem=memo(({item})=>{
+    const MemoizedRenderItem=memo(({item, isFirstIndex})=>{
         return(
-            <View>
-                <Image
-                    source={require('../../assets/svgicons/bikeImg.png')}
-                />
+            <View style={[styles.vehicleItem, !isFirstIndex && {marginTop:15}]}>
+                {
+                    item.avatar?
+                    <>
+                    <Image
+                        source={item.avatar}
+                        style={styles.vehicleAvatarStyle}
+                    />
+                    </>
+                    :
+                    <>
+                    <Image
+                        source={Icons.noImgForVehicle}
+                        style={styles.vehicleAvatarStyle}
+                    />
+                    </>
+                }
                 <View style={styles.bottomflexcontainer}>
                     <View>
                         <Text style={styles.vehicleName}>{item.vehicle_name}</Text>
@@ -37,11 +50,11 @@ export default function VehiclesMainPage(){
             </View>
         )
     },(r1, r2)=>{
-        return isEqual(r1.item, r2.item)
+        return isEqual(r1.item, r2.item) && r1.isFirstIndex===r2.isFirstIndex
     })
 
-    const renderItem=useCallback(({item, index})=>{
-        return <MemoizedRenderItem item={item}/>
+    const renderItem=useCallback(({item, index}, isFirstIndex)=>{
+        return <MemoizedRenderItem item={item} isFirstIndex={isFirstIndex}/>
     },[])
 
     return(
@@ -52,23 +65,27 @@ export default function VehiclesMainPage(){
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
             />
-            {
-                !(vehicleslist && vehicleslist.length!==0) &&
-                <View style={styles.mainTitleDiv}>
-                    <Text style={styles.mainTitle}>Vehicles</Text>
-                </View>
-            }
+            <View style={styles.mainTitleDiv}>
+                <Text style={styles.mainTitle}>Vehicles</Text>
+            </View>
             <View style={styles.contentcontainer}>
                 {
                     vehicleslist && vehicleslist.length!==0 ?
                     <>
-                    <Text style={styles.mainTitle}>Vehicles</Text>
+                    <View style={{flex:1, marginHorizontal:15, marginTop:15}}>
                     <FlatList
                         data={vehicleslist}
-                        renderItem={renderItem}
+                        renderItem={({item, index})=>{
+                            return(
+                                <>
+                                {renderItem({item, index}, index===0)}
+                                </>
+                            )
+                        }}
                         showsVerticalScrollIndicator={false}
                         keyExtractor={(item)=>item.id.toString()}
                     />
+                    </View>
                     <Pressable style={styles.addRecordBtn} onPress={handleNavigateaddvehicles}>
                         <Icons.plusIcon width={20} height={20} fill="white"/>
                     </Pressable>

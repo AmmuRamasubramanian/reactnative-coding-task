@@ -77,23 +77,45 @@ export default StyleSheet.create({
         paddingBottom: 10,
         marginTop: 15
     },
+    vehicleItem:{
+        backgroundColor: "white",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+        borderRadius:7,
+        overflow:"hidden"
+    },
     vehicleName: {
         color: colors.greenBtnColor,
-        fontSize: normalize(12)
+        fontSize: normalize(13.5),
+        fontFamily:"inter_semibold"
     },
     vehicleType: {
         color: colors.greenBtnColor,
-        fontSize: normalize(12)
+        fontSize: normalize(11.5),
+        fontFamily:"inter_reg",
+        marginTop:5
     },
     vehicleEngineCC: {
         color: colors.greenBtnColor,
-        fontSize: normalize(12)
+        fontSize: normalize(13.5),
+        fontFamily:"inter_semibold"
+    },
+    vehicleAvatarStyle:{
+        width:"100%",
+        height:170,
+        minHeight:170,
+        objectFit:"cover"
     },
     bottomflexcontainer: {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        flexDirection: "row"
+        flexDirection: "row",
+        paddingHorizontal:14,
+        paddingVertical:10
     },
     addRecordBtn: {
         height: 50,

@@ -14,6 +14,9 @@ import camera from './assets/svgicons/camera.svg'
 import topStyle from './assets/svgicons/topStyle.png'
 import arrowleft from './assets/svgicons/arrowleft.svg'
 import chevronright from './assets/svgicons/chevronright.svg'
+import noImgForVehicle from './assets/svgicons/noImgForVehicle.png'
+import Onboardingscreen from './assets/svgicons/Onboardingscreen.png'
+import confetti from './assets/svgicons/confetti.png'
 
 export default{
     filterFilled,
@@ -31,5 +34,8 @@ export default{
     camera,
     topStyle,
     arrowleft,
-    chevronright
+    chevronright,
+    noImgForVehicle,
+    confetti,
+    Onboardingscreen
 }
