@@ -11,6 +11,7 @@ import Icons from '../../Icons'
 import { Image } from 'expo-image'
 import BottomSheetWithDynamicFlatList from '../../ReusableRootComps/BottomsheetWithDynamicList'
 import VehicleListPopup from '../../VehiclesComp/VehicleListPopup/VehicleListPopup'
+import BottomSheetWrapper from '../../ReusableRootComps/BottomSheetWrapper'
 
 const SCREEN_HEIGHT=Dimensions.get("window").height
 
@@ -35,11 +36,11 @@ export default function AddRefuelingPage(){
     }
 
     const handleOpenRefuellingdatePopup=()=>{
-        caleRef.current?.snapToIndex(0)
+        caleRef.current?.present(0)
     }
 
     const handleCloseSheetPopup=()=>{
-        caleRef.current?.close()
+        caleRef.current?.dismiss()
         sheetRef.current?.dismiss()
     }
 
@@ -198,27 +199,30 @@ export default function AddRefuelingPage(){
                     vehicleItem={vehicleItem}
                 />
             </BottomSheetWithDynamicFlatList>
-            <BottomSheet
+            <BottomSheetWrapper
                 ref={caleRef}
-                snapPoints={snapPoints}
-                enableDynamicSizing={true}
-                index={-1}
-                backdropComponent={renderBackdrop}
-                enablePanDownToClose
-                
             >
-                <BottomSheetView style={styles.contentContainerOfBackdrop}>
+                <View>
                  <Calendar
                     onDayPress={(date)=>{
                         console.log(date)
                         setRefuellingdate(date.dateString)
                     }}
                     markedDates={{
-                        [refuellingdate]: {marked: true}
+                        [refuellingdate]: {marked: true, selectedColor:colors.greenBtnColor}
+                    }}
+                    theme={{
+                        textDayFontFamily: "inter_reg",
+                        textMonthFontFamily: "inter_semibold",
+                        textDayHeaderFontFamily: "inter_semibold",
+
+                        textDayFontSize: 14,
+                        textMonthFontSize: 16,
+                        textDayHeaderFontSize: 13,
                     }}
                 />
-                </BottomSheetView>
-            </BottomSheet>
+                </View>
+            </BottomSheetWrapper>
         </View>
     )
 }
