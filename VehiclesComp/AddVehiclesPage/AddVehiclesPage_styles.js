@@ -37,7 +37,12 @@ export default StyleSheet.create({
         flexDirection: "row",
         paddingHorizontal: 12,
         borderRadius: 8,
-        backgroundColor: "white"
+        backgroundColor: "white",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
     },
     inputText: {
         color: colors.greenBtnColor,
@@ -46,7 +51,7 @@ export default StyleSheet.create({
         flex: 1
     },
     inputGap: {
-        marginTop: 15
+        marginTop: 18
     },
     btnflexcontainer: {
         flexDirection: "row",
@@ -83,10 +88,10 @@ export default StyleSheet.create({
     },
     title: {
         color: colors.greenBtnColor,
-        fontSize: normalize(17),
+        fontSize: normalize(19),
         textAlign: "center",
         fontFamily: "inter_medium",
-        marginTop: 30
+        marginTop: 40
     },
     avatarOuter:{
         minHeight:125,
