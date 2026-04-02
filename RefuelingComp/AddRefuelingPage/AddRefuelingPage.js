@@ -23,6 +23,8 @@ export default function AddRefuelingPage(){
     const safeAreaInsets=useSafeAreaInsets()
     const selectedRecordItem=useMileageAppStore((state)=>state.selectedRecordItem)
     const addRecordForVehicle=useMileageAppStore((state)=>state.addRecordForVehicles)
+    const updateRecordItem=useMileageAppStore((state)=>state.updateRecordItem)
+    const updateRecordForVehicles=useMileageAppStore((state)=>state.updateRecordForVehicles)
 
     const caleRef=useRef(null)
     const sheetRef=useRef(null)
@@ -37,6 +39,9 @@ export default function AddRefuelingPage(){
     const [price, setPrice]=useState(isEdit ? selectedRecordItem?.price : '')
 
     const handleOpenVehicleNamePopup=()=>{
+        if(!isEdit){
+            return
+        }
         sheetRef.current?.present()
     }
 
@@ -87,11 +92,19 @@ export default function AddRefuelingPage(){
             "fuel_consumption":fuelConsumption,
             "odometer_start":odometerstart,
             "odometer_end":odometerend,
-            "id":Date.now().toString(),
             "vehicle_name":vehicleItem.vehicle_name,
             "vehicle_id":vehicleItem.id
         }
-        addRecordForVehicle(vehicleItem.id, obj)
+        if(isEdit){
+            updateRecordItem(obj)
+            updateRecordForVehicles(vehicleItem.id, selectedRecordItem.id, obj)
+        }else{
+            const newObj={
+                ...obj,
+                "id":Date.now().toString(),
+            }
+            addRecordForVehicle(vehicleItem.id, newObj)
+        }
         navigation.goBack()
     }
 
@@ -109,7 +122,7 @@ export default function AddRefuelingPage(){
                 <View style={{marginTop:30}}/>
                 <Pressable style={styles.inputBox} onPress={handleOpenVehicleNamePopup}>
                     <Text style={styles.vehicleName} numberOfLines={1} ellipsizeMode='tail'>{vehicleItem && Object.keys(vehicleItem).length!==0 ? vehicleItem.vehicle_name : "Select a vehicle name"}</Text>
-                   <Icons.chevronright width={15} height={15} fill={colors.greenBtnColor}/>
+                   {!isEdit && <Icons.chevronright width={15} height={15} fill={colors.greenBtnColor}/>}
                 </Pressable>
                 <View style={styles.inputGap}/>
                 <Pressable style={styles.inputBox} onPress={handleOpenRefuellingdatePopup}>
