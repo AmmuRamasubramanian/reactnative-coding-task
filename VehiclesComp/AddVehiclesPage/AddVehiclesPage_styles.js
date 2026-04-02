@@ -66,7 +66,7 @@ export default StyleSheet.create({
         justifyContent: "center",
         borderRadius: 8,
         borderWidth: 0.8,
-        borderColor: "black",
+        borderColor: colors.greenBtnColor,
         borderStyle: "solid",
         height: 45,
         minHeight: 45
@@ -82,7 +82,7 @@ export default StyleSheet.create({
         minHeight: 45
     },
     btnText: {
-        color: "black",
+        color: colors.greenBtnColor,
         fontSize: normalize(13),
         fontFamily: "inter_medium"
     },

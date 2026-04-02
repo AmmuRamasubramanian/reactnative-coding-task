@@ -7,16 +7,16 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: "#F0F2F2"
     },
-    topHeaderStyle:{
-        position:"absolute",
-        top:0,
-        width:"100%",
-        height:120
+    topHeaderStyle: {
+        position: "absolute",
+        top: 0,
+        width: "100%",
+        height: 120
     },
-    arrowLeftIcon:{
-        position:"absolute",
-        top:0,
-        left:0
+    arrowLeftIcon: {
+        position: "absolute",
+        top: 0,
+        left: 0
     },
     title: {
         color: colors.greenBtnColor,
@@ -56,7 +56,8 @@ export default StyleSheet.create({
     vehicleName: {
         color: colors.greenBtnColor,
         fontSize: normalize(12),
-        fontFamily: "inter_medium"
+        fontFamily: "inter_medium",
+        flex:1
     },
     inputTitle: {
         color: colors.greenBtnColor,
@@ -83,7 +84,7 @@ export default StyleSheet.create({
         justifyContent: "center",
         borderRadius: 8,
         borderWidth: 0.8,
-        borderColor: "black",
+        borderColor: colors.greenBtnColor,
         borderStyle: "solid",
         height: 45,
         minHeight: 45
@@ -94,9 +95,7 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 8,
-        borderWidth: 0.8,
         backgroundColor: colors.greenBtnColor,
-        borderStyle: "solid",
         height: 45,
         minHeight: 45
     },

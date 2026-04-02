@@ -103,6 +103,7 @@ export default function AddRefuelingPage(){
                 <View style={{marginTop:30}}/>
                 <Pressable style={styles.inputBox} onPress={handleOpenVehicleNamePopup}>
                     <Text style={styles.vehicleName}>{vehicleName && vehicleName.length!==0 ? vehicleName : "Select a vehicle name"}</Text>
+                   <Icons.chevronright width={15} height={15} fill={colors.greenBtnColor}/>
                 </Pressable>
                 <View style={styles.inputGap}/>
                 <Pressable style={styles.inputBox} onPress={handleOpenRefuellingdatePopup}>
