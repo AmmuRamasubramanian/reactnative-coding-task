@@ -11,7 +11,7 @@ export default StyleSheet.create({
         color: colors.greenBtnColor,
         fontSize: normalize(17),
         textAlign: "center",
-        marginTop:15
+        marginTop: 15
     },
     inputBox: {
         height: 50,
@@ -22,7 +22,7 @@ export default StyleSheet.create({
         paddingHorizontal: 12,
         borderRadius: 8,
         borderWidth: 0.8,
-        borderColor:colors.greenBtnColor,
+        borderColor: colors.greenBtnColor,
         borderStyle: "solid",
         backgroundColor: "white",
     },
@@ -30,24 +30,90 @@ export default StyleSheet.create({
         color: "black",
         fontSize: normalize(12),
     },
-    contentcontainer:{
+    contentcontainer: {
+        marginHorizontal: 15,
+        flex:1
+    },
+    inputGap: {
+        marginTop: 15
+    },
+    vehicleName: {
+        color: colors.greenBtnColor,
+        fontSize: normalize(12),
+    },
+    inputTitle: {
+        color: colors.greenBtnColor,
+        fontSize: normalize(12),
+    },
+    flexcontainerOfBtns: {
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "row",
+        marginTop: 10
+    },
+    btnflexcontainer: {
+        flexDirection: "row",
+        display: "flex",
+        alignItems: "center",
+        marginBottom: 10,
         marginHorizontal:15
     },
-    inputGap:{
-        marginTop:15
+    cancelBtn: {
+        width: "48%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 8,
+        borderWidth: 0.8,
+        borderColor: "black",
+        borderStyle: "solid",
+        height: 45,
+        minHeight: 45
     },
-    vehicleName:{
-        color:colors.greenBtnColor,
-        fontSize:normalize(12),
+    addBtn: {
+        width: "48%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 8,
+        borderWidth: 0.8,
+        backgroundColor: colors.greenBtnColor,
+        borderStyle: "solid",
+        height: 45,
+        minHeight: 45
     },
-    inputTitle:{
-        color:colors.greenBtnColor,
-        fontSize:normalize(12),
+    btnText: {
+        color: "black",
+        fontSize: normalize(13)
     },
-    flexcontainerOfBtns:{
-        display:"flex",
-        alignItems:"center",
-        flexDirection:"row",
-        marginTop:10
+    //sheet popup--------------------------------------------------------
+    contentContainerOfBackdrop: {
+        flex: 1
+    },
+    vehiclelistDiv: {
+        marginBottom: 30,
+        marginHorizontal: 15,
+        marginTop: 10
+    },
+    vehiclelistTitle: {
+        color: colors.greenBtnColor,
+        fontFamily: "inter_semibold",
+        textAlign: "center",
+        fontSize: normalize(16),
+        marginBottom: 10
+    },
+    vehicleItemInPopup: {
+        height: 40,
+        minHeight: 40,
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "row",
+        paddingHorizontal: 12,
+        borderRadius: 8,
+        backgroundColor: "#D9F0F1"
+    },
+    vehicleNameInPopup: {
+        color: colors.greenBtnColor,
+        fontSize: normalize(12),
     }
 })

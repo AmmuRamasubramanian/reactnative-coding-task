@@ -1,12 +1,21 @@
 import { View , Text, Pressable, TextInput} from 'react-native'
 import styles from './AddRefuelingPage_styles'
-import { useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import colors from '../../colors'
+import {Calendar, LocaleConfig} from 'react-native-calendars';
+import BottomSheet, { BottomSheetBackdrop, BottomSheetView } from '@gorhom/bottom-sheet'
+import { useMileageAppStore } from '../../store'
+import { useNavigation } from '@react-navigation/native'
 
 export default function AddRefuelingPage(){
 
     const safeAreaInsets=useSafeAreaInsets()
+    const caleRef=useRef(null)
+    const sheetRef=useRef(null)
+    const navigation=useNavigation()
+
+     const vehicleslist=useMileageAppStore((state)=>state.vehicles)
 
     const [vehicleName, setVehicleName]=useState("")
     const [refuellingdate, setRefuellingdate]=useState('')
@@ -15,12 +24,19 @@ export default function AddRefuelingPage(){
     const [fuel, setFuel]=useState('')
     const [price, setPrice]=useState('')
 
-    const handleOpenVehicleNamePopup=()=>{
+    const snapPoints = useMemo(() => ["50%"], []);
 
+    const handleOpenVehicleNamePopup=()=>{
+        sheetRef.current?.snapToIndex(0)
     }
 
-    const handleOpenRefuellingPopup=()=>{
+    const handleOpenRefuellingdatePopup=()=>{
+        caleRef.current?.snapToIndex(0)
+    }
 
+    const handleCloseSheetPopup=()=>{
+        caleRef.current?.close()
+        sheetRef.current?.close()
     }
 
     const handleChangeOdometerStart=(text)=>{
@@ -39,6 +55,38 @@ export default function AddRefuelingPage(){
         setPrice(text)
     }
 
+    const renderBackdrop = useCallback(
+		(props) => (
+			<BottomSheetBackdrop
+				{...props}
+				disappearsOnIndex={-1}
+				appearsOnIndex={0}
+                pressBehavior={"close"}
+                style={{backgroundColor:"rgba(0, 0, 0, 0.5)"}}
+			/>
+		),
+		[]
+	);
+
+    const handleSelectVehicleItem=(item)=>{
+        setVehicleName(item.vehicle_name)
+        handleCloseSheetPopup()
+    }
+
+    const isAddenabled=useMemo(()=>{
+        return vehicleName && vehicleName.length!==0 && odometerend && odometerend.length!==0 &&
+            odometerstart && odometerstart.length!==0 && fuel && fuel.length!==0 && 
+            refuellingdate && refuellingdate.length!==0 && price && price.length!==0
+    },[vehicleName, odometerend, odometerstart, fuel, price, refuellingdate])
+
+    const handleGoBack=()=>{
+        navigation.goBack()
+    }
+
+    const handleAddRefuelling=()=>{
+
+    }
+
     return(
         <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right}]}>
             <View style={styles.contentcontainer}>
@@ -48,7 +96,7 @@ export default function AddRefuelingPage(){
                     <Text style={styles.vehicleName}>{vehicleName && vehicleName.length!==0 ? vehicleName : "Select a vehicle name"}</Text>
                 </Pressable>
                 <View style={styles.inputGap}/>
-                <Pressable style={styles.inputBox} onPress={handleOpenRefuellingPopup}>
+                <Pressable style={styles.inputBox} onPress={handleOpenRefuellingdatePopup}>
                 <Text style={styles.vehicleName}>{refuellingdate && refuellingdate.length!==0 ? refuellingdate : "Enter refuelling date"}</Text>
                 </Pressable>
                 <View style={styles.inputGap}/>
@@ -106,6 +154,67 @@ export default function AddRefuelingPage(){
                     </View>
                 </View>
             </View>
+            <View style={styles.btnflexcontainer}>
+                <Pressable style={styles.cancelBtn} onPress={handleGoBack}>
+                    <Text style={styles.btnText}>Cancel</Text>
+                </Pressable>
+                <View style={{marginLeft:10}}/>
+                {
+                isAddenabled ?
+                <Pressable style={styles.addBtn} onPress={handleAddRefuelling}>
+                    <Text style={[styles.btnText, {color:"white"}]}>Add</Text>
+                </Pressable>
+                :
+                <View style={[styles.addBtn, {backgroundColor:"#B0B0B0"}]}>
+                    <Text style={[styles.btnText, {color:"black"}]}>Add</Text>
+                </View>
+                }
+            </View>
+
+            <BottomSheet
+                ref={sheetRef}
+                snapPoints={snapPoints}
+                enableDynamicSizing={true}
+                index={-1}
+                backdropComponent={renderBackdrop}
+                enablePanDownToClose
+            >
+                <BottomSheetView style={styles.contentContainerOfBackdrop}>
+                    <View style={styles.vehiclelistDiv}>
+                    <Text style={styles.vehiclelistTitle}>Vehicle list</Text>
+                    {
+                        vehicleslist.map((item, index)=>{
+                            return(
+                                <Pressable key={item.id} style={styles.vehicleItemInPopup} onPress={()=>handleSelectVehicleItem(item)}>
+                                    <Text style={styles.vehicleNameInPopup}>{item.vehicle_name}</Text>
+                                </Pressable>
+                            )
+                        })
+                    }
+                    </View>
+                </BottomSheetView>
+            </BottomSheet>
+            <BottomSheet
+                ref={caleRef}
+                snapPoints={snapPoints}
+                enableDynamicSizing={true}
+                index={-1}
+                backdropComponent={renderBackdrop}
+                enablePanDownToClose
+                
+            >
+                <BottomSheetView style={styles.contentContainerOfBackdrop}>
+                 <Calendar
+                    onDayPress={(date)=>{
+                        console.log(date)
+                        setRefuellingdate(date.dateString)
+                    }}
+                    markedDates={{
+                        [refuellingdate]: {marked: true}
+                    }}
+                />
+                </BottomSheetView>
+            </BottomSheet>
         </View>
     )
 }
