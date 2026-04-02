@@ -19,7 +19,7 @@ export default function AddRefuelingPage(){
 
      const vehicleslist=useMileageAppStore((state)=>state.vehicles)
 
-    const [vehicleName, setVehicleName]=useState("")
+    const [vehicleItem, setvehicleItem]=useState(null)
     const [refuellingdate, setRefuellingdate]=useState('')
     const [odometerstart, setOdometerstart]=useState('')
     const [odometerend, setOdometerEnd]=useState('')
@@ -71,22 +71,22 @@ export default function AddRefuelingPage(){
 	);
 
     const handleSelectVehicleItem=(item)=>{
-        setVehicleName(item.vehicle_name)
+        setvehicleItem(item)
         handleCloseSheetPopup()
     }
 
     const isAddenabled=useMemo(()=>{
-        return vehicleName && vehicleName.length!==0 && odometerend && odometerend.length!==0 &&
+        return vehicleItem && Object.keys(vehicleItem).length!==0 && odometerend && odometerend.length!==0 &&
             odometerstart && odometerstart.length!==0 && fuel && fuel.length!==0 && 
             refuellingdate && refuellingdate.length!==0 && price && price.length!==0
-    },[vehicleName, odometerend, odometerstart, fuel, price, refuellingdate])
+    },[vehicleItem, odometerend, odometerstart, fuel, price, refuellingdate])
 
     const handleGoBack=()=>{
         navigation.goBack()
     }
 
     const handleAddRefuelling=()=>{
-
+        const obj={}
     }
 
     return(
@@ -102,7 +102,7 @@ export default function AddRefuelingPage(){
                 <Text style={styles.title}>Add Refuelling Record</Text>
                 <View style={{marginTop:30}}/>
                 <Pressable style={styles.inputBox} onPress={handleOpenVehicleNamePopup}>
-                    <Text style={styles.vehicleName}>{vehicleName && vehicleName.length!==0 ? vehicleName : "Select a vehicle name"}</Text>
+                    <Text style={styles.vehicleName}>{vehicleItem && Object.keys(vehicleItem).length!==0 ? vehicleItem.vehicle_name : "Select a vehicle name"}</Text>
                    <Icons.chevronright width={15} height={15} fill={colors.greenBtnColor}/>
                 </Pressable>
                 <View style={styles.inputGap}/>
