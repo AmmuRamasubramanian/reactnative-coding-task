@@ -84,6 +84,7 @@ export default function VehiclesMainPage(){
                         }}
                         showsVerticalScrollIndicator={false}
                         keyExtractor={(item)=>item.id.toString()}
+                        contentContainerStyle={{paddingBottom:100}}
                     />
                     </View>
                     <Pressable style={styles.addRecordBtn} onPress={handleNavigateaddvehicles}>

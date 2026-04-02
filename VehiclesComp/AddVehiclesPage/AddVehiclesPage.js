@@ -10,6 +10,7 @@ import { useMileageAppStore } from '../../store'
 import Icons from '../../Icons'
 import * as ImagePicker from 'expo-image-picker'
 import { Image } from 'expo-image'
+import VehicleAddedSuccessPopup from '../VehicleAddedSuccessPopup/VehicleAddedSuccessPopup'
 
 const { width } = Dimensions.get("window");
 
@@ -25,6 +26,8 @@ export default function AddVehiclesPage(){
     const [engineCC, setEngineCC]=useState('')
     const [showvehicleType, setshowvehicleType]=useState(false)
     const [avatar, setAvatar]=useState(null)
+
+    const [showSuccess, setShowSuccess]=useState(false)
     
 
     const handleChangeVehicleName=(text)=>{
@@ -56,7 +59,11 @@ export default function AddVehiclesPage(){
             "avatar":avatar
         }
         addVehicles(vehicleObj)
-        navigation.goBack()
+        setShowSuccess(true)
+        setTimeout(() => {
+            setShowSuccess(false);
+            navigation.goBack();
+        }, 3000);
     }
 
     const isAddBtnEnabled=useMemo(()=>{
@@ -163,6 +170,16 @@ export default function AddVehiclesPage(){
                 </View>
                 </View>
             </TouchableWithoutFeedback>
+            {
+                showSuccess &&
+                <>
+                <VehicleAddedSuccessPopup
+                    showSuccess={showSuccess}
+                    vehicleName={vehicleName}
+                    avatar={avatar}
+                />
+                </>
+            }
         </View>
     )
 }
