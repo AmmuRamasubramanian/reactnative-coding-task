@@ -1,4 +1,4 @@
-import { View , Text, Pressable} from 'react-native'
+import { View , Text, Pressable, Dimensions} from 'react-native'
 import styles from './RefuelingMainPage_styles'
 import { useMileageAppStore } from '../../store'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -6,15 +6,20 @@ import Icons from '../../Icons'
 import { useNavigation } from '@react-navigation/native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import colors from '../../colors'
-import { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { FlashList } from '@shopify/flash-list'
 import isEqual from 'lodash.isequal'
 import moment from 'moment'
+import VehicleListPopup from '../../VehiclesComp/VehicleListPopup/VehicleListPopup'
+import BottomSheetWithDynamicFlatList from '../../ReusableRootComps/BottomsheetWithDynamicList'
+
+const SCREEN_HEIGHT=Dimensions.get("window").height
 
 export default function RefuelingMainPage(){
 
     const navigation=useNavigation()
     const safeAreaInsets=useSafeAreaInsets()
+    const vehiclelistRef=useRef(null)
 
     const vehicleslist=useMileageAppStore((state)=>state.vehicles)
     const recordslist=useMileageAppStore((state)=>state.records)
@@ -73,6 +78,20 @@ export default function RefuelingMainPage(){
         return <MemoizedRenderItem item={item} isFirstIndex={isFirstIndex}/>
     },[])
 
+
+    const handleOpenVehicleList=()=>{
+        vehiclelistRef.current?.present()
+    }
+
+    const handleClosevehicleList=()=>{
+        vehiclelistRef.current?.dismiss()
+    }
+
+    const handleSelectVehicleItem=(item)=>{
+        setSelectedVehicleItem(item)
+        handleClosevehicleList()
+    }
+
     return(
         <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right}]}>
             <View style={{flex:1, backgroundColor:colors.lightWhitish, width:"100%"}}>
@@ -80,7 +99,7 @@ export default function RefuelingMainPage(){
                     <Text style={styles.title}>Refuelling</Text>
                     {
                         selectedRecords && selectedRecords.length!==0 && selectedVehicleItem &&
-                        <Pressable style={styles.selectedVehicleBox}>
+                        <Pressable style={styles.selectedVehicleBox} onPress={handleOpenVehicleList}>
                             <Text style={styles.selectedVehicleText} numberOfLines={1} ellipsizeMode='tail'>{selectedVehicleItem?.vehicle_name}</Text>
                             <View style={styles.rotatedIcon}>
                                 <Icons.chevronright width={15} height={15} fill={colors.greenBtnColor}/>
@@ -138,6 +157,16 @@ export default function RefuelingMainPage(){
                     </>
                 }
             </View>
+            <BottomSheetWithDynamicFlatList
+                ref={vehiclelistRef}
+                maxHeight={SCREEN_HEIGHT*0.8}
+                showSpace={true}
+            >
+                <VehicleListPopup
+                    handleSelectVehicleItem={handleSelectVehicleItem}
+                    vehicleItem={selectedVehicleItem}
+                />
+            </BottomSheetWithDynamicFlatList>
         </View>
     )
 }
