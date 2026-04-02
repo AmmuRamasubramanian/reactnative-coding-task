@@ -11,7 +11,8 @@ export default StyleSheet.create({
         color: colors.greenBtnColor,
         fontSize: normalize(17),
         textAlign: "center",
-        marginTop: 15
+        marginTop: 15,
+        fontFamily:"inter_medium"
     },
     inputBox: {
         height: 50,
@@ -27,8 +28,10 @@ export default StyleSheet.create({
         backgroundColor: "white",
     },
     inputText: {
-        color: "black",
+        color: colors.greenBtnColor,
         fontSize: normalize(12),
+        fontFamily:"inter_medium",
+        flex:1
     },
     contentcontainer: {
         marginHorizontal: 15,
@@ -40,10 +43,12 @@ export default StyleSheet.create({
     vehicleName: {
         color: colors.greenBtnColor,
         fontSize: normalize(12),
+        fontFamily:"inter_medium"
     },
     inputTitle: {
         color: colors.greenBtnColor,
         fontSize: normalize(12),
+        fontFamily:"inter_medium"
     },
     flexcontainerOfBtns: {
         display: "flex",
@@ -83,8 +88,9 @@ export default StyleSheet.create({
         minHeight: 45
     },
     btnText: {
-        color: "black",
-        fontSize: normalize(13)
+        color: colors.greenBtnColor,
+        fontSize: normalize(13),
+        fontFamily:"inter_medium"
     },
     //sheet popup--------------------------------------------------------
     contentContainerOfBackdrop: {
@@ -115,5 +121,6 @@ export default StyleSheet.create({
     vehicleNameInPopup: {
         color: colors.greenBtnColor,
         fontSize: normalize(12),
+        fontFamily:"inter_medium"
     }
 })

@@ -19,21 +19,31 @@ export default StyleSheet.create({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        flex: 1,
-        marginHorizontal:15
+        flex: 0.92,
+        marginHorizontal: 15
     },
-    nofuleingRecordText:{
-         color: colors.greenBtnColor,
+    nofuleingRecordText: {
+        color: colors.greenBtnColor,
         fontSize: normalize(13),
-        fontWeight:"bold",
-        marginTop:10
+        marginTop: 10,
+        fontFamily: "inter_semibold"
     },
     descText: {
+        color: "#9DB1BC",
+        fontSize: normalize(13),
+        marginTop: 15,
+        textAlign: "center",
+        lineHeight: 24,
+        fontFamily: "inter_medium",
+        marginHorizontal: 10
+    },
+    descTextForNovehicle: {
         color: colors.greenBtnColor,
         fontSize: normalize(13),
         marginTop: 15,
         textAlign: "center",
-        lineHeight: 20
+        lineHeight: 20,
+        fontFamily: "inter_mediun"
     },
     addvehicleBtn: {
         backgroundColor: colors.greenBtnColor,
@@ -45,40 +55,44 @@ export default StyleSheet.create({
         borderRadius: 10,
         marginTop: 15,
         alignSelf: "center",
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
+        flexDirection:"row"
     },
     addVehicleText: {
         color: "white",
-        fontSize: normalize(14),
+        fontSize: normalize(13),
+        fontFamily:"inter_medium",
+        marginRight:10
     },
-    titleDiv:{
-        display:"flex",
-        alignItems:"center",
-        justifyContent:"center",
-        borderBottomWidth:0.8,
-        borderBottomStyle:"solid",
-        borderBottomColor:colors.greenBtnColor,
-        width:"100%",
-        paddingBottom:10,
-        marginTop:15
+    titleDiv: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        borderBottomWidth: 0.8,
+        borderBottomStyle: "solid",
+        borderBottomColor: colors.greenBtnColor,
+        width: "100%",
+        paddingBottom: 10,
+        marginTop: 15
     },
-    title:{
-        color:colors.greenBtnColor,
-        fontSize:normalize(17),
-        textAlign:"center"
+    title: {
+        color: colors.greenBtnColor,
+        fontSize: normalize(17),
+        textAlign: "center",
+        fontFamily: "inter_semibold"
     },
-    addRecordBtn:{
-        height:50,
-        minHeight:50,
-        width:50,
-        minWidth:50,
-        borderRadius:50,
-        display:"flex",
-        alignItems:"center",
-        justifyContent:"center",
-        backgroundColor:colors.greenBtnColor,
-        position:"absolute",
-        bottom:10,
-        right:10
+    addRecordBtn: {
+        height: 50,
+        minHeight: 50,
+        width: 50,
+        minWidth: 50,
+        borderRadius: 50,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: colors.greenBtnColor,
+        position: "absolute",
+        bottom: 10,
+        right: 10
     }
 })

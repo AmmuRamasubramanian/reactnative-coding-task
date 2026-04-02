@@ -20,20 +20,20 @@ export default StyleSheet.create({
         marginHorizontal: 15
     },
     subTitle: {
-        color: "#0B3C58",
+        color: colors.greenBtnColor,
         fontSize: normalize(13),
         marginTop: 10,
         textAlign: "center"
     },
     descText: {
-        color: "#0B3C58",
+        color: colors.greenBtnColor,
         fontSize: normalize(13),
         marginTop: 15,
         textAlign: "center",
         lineHeight: 20
     },
     addvehicleBtn: {
-        backgroundColor: "#0B3C58",
+        backgroundColor: colors.greenBtnColor,
         height: 40,
         minHeight: 40,
         display: "flex",
@@ -47,6 +47,8 @@ export default StyleSheet.create({
     addVehicleText: {
         color: "white",
         fontSize: normalize(14),
+        marginRight:10,
+        fontFamily:"inter_medium"
     },
     innercontainer: {
         display: "flex",

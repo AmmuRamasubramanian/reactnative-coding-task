@@ -111,6 +111,7 @@ export default function AddRefuelingPage(){
                             placeholder='Start reading'
                             placeholderTextColor={colors.greenBtnColor}
                             keyboardType='numeric'
+                            style={styles.inputText}
                         />
                     </View>
                     <View style={{marginLeft:10}}/>
@@ -123,6 +124,7 @@ export default function AddRefuelingPage(){
                             placeholder='End Reading'
                             placeholderTextColor={colors.greenBtnColor}
                             keyboardType='numeric'
+                            style={styles.inputText}
                         />
                     </View>
                 </View>
@@ -138,6 +140,7 @@ export default function AddRefuelingPage(){
                             placeholder='Consumption (in L)'
                             placeholderTextColor={colors.greenBtnColor}
                             keyboardType='numeric'
+                            style={styles.inputText}
                         />
                     </View>
                     <View style={{marginLeft:10}}/>
@@ -150,6 +153,7 @@ export default function AddRefuelingPage(){
                             placeholder='Price (in $)'
                             placeholderTextColor={colors.greenBtnColor}
                             keyboardType='numeric'
+                            style={styles.inputText}
                         />
                     </View>
                 </View>

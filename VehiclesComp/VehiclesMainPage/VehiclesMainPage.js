@@ -70,6 +70,7 @@ export default function VehiclesMainPage(){
                     <Text style={styles.descText}>Add vehicle to start tracking its refuelling and performance</Text>
                     <Pressable style={styles.addvehicleBtn} onPress={handleNavigateaddvehicles}>
                         <Text style={styles.addVehicleText}>Add vehicles</Text>
+                        <Icons.arrowright width={14} height={14} fill={"white"}/>
                     </Pressable>
                     </View>
                 }
