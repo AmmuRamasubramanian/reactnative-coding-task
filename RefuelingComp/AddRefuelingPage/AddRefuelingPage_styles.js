@@ -5,7 +5,7 @@ import { normalize } from "../../helperfunctions";
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#F0F2F2"
+        backgroundColor: colors.lightWhitish
     },
     topHeaderStyle: {
         position: "absolute",

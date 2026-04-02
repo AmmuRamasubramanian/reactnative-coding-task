@@ -1,4 +1,4 @@
-import { View , Text, Pressable, TextInput} from 'react-native'
+import { View , Text, Pressable, TextInput, Dimensions} from 'react-native'
 import styles from './AddRefuelingPage_styles'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -9,6 +9,10 @@ import { useMileageAppStore } from '../../store'
 import { useNavigation } from '@react-navigation/native'
 import Icons from '../../Icons'
 import { Image } from 'expo-image'
+import BottomSheetWithDynamicFlatList from '../../ReusableRootComps/BottomsheetWithDynamicList'
+import VehicleListPopup from '../../VehiclesComp/VehicleListPopup/VehicleListPopup'
+
+const SCREEN_HEIGHT=Dimensions.get("window").height
 
 export default function AddRefuelingPage(){
 
@@ -16,8 +20,6 @@ export default function AddRefuelingPage(){
     const caleRef=useRef(null)
     const sheetRef=useRef(null)
     const navigation=useNavigation()
-
-     const vehicleslist=useMileageAppStore((state)=>state.vehicles)
 
     const [vehicleItem, setvehicleItem]=useState(null)
     const [refuellingdate, setRefuellingdate]=useState('')
@@ -29,7 +31,7 @@ export default function AddRefuelingPage(){
     const snapPoints = useMemo(() => ["50%"], []);
 
     const handleOpenVehicleNamePopup=()=>{
-        sheetRef.current?.snapToIndex(0)
+        sheetRef.current?.present()
     }
 
     const handleOpenRefuellingdatePopup=()=>{
@@ -38,7 +40,7 @@ export default function AddRefuelingPage(){
 
     const handleCloseSheetPopup=()=>{
         caleRef.current?.close()
-        sheetRef.current?.close()
+        sheetRef.current?.dismiss()
     }
 
     const handleChangeOdometerStart=(text)=>{
@@ -186,29 +188,15 @@ export default function AddRefuelingPage(){
                 }
             </View>
 
-            <BottomSheet
+            <BottomSheetWithDynamicFlatList
                 ref={sheetRef}
-                snapPoints={snapPoints}
-                enableDynamicSizing={true}
-                index={-1}
-                backdropComponent={renderBackdrop}
-                enablePanDownToClose
+                maxHeight={SCREEN_HEIGHT*0.8}
+                showSpace={true}
             >
-                <BottomSheetView style={styles.contentContainerOfBackdrop}>
-                    <View style={styles.vehiclelistDiv}>
-                    <Text style={styles.vehiclelistTitle}>Vehicle list</Text>
-                    {
-                        vehicleslist.map((item, index)=>{
-                            return(
-                                <Pressable key={item.id} style={styles.vehicleItemInPopup} onPress={()=>handleSelectVehicleItem(item)}>
-                                    <Text style={styles.vehicleNameInPopup}>{item.vehicle_name}</Text>
-                                </Pressable>
-                            )
-                        })
-                    }
-                    </View>
-                </BottomSheetView>
-            </BottomSheet>
+                <VehicleListPopup
+                    handleSelectVehicleItem={handleSelectVehicleItem}
+                />
+            </BottomSheetWithDynamicFlatList>
             <BottomSheet
                 ref={caleRef}
                 snapPoints={snapPoints}

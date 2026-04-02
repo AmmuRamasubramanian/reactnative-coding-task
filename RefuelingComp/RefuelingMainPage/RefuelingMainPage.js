@@ -15,7 +15,7 @@ export default function RefuelingMainPage(){
     const records=useMileageAppStore((state)=>state.records)
 
     const handleNavigateaddvehicles=()=>{
-        navigation.navigate('Vehicles', {screen:"AddVehiclesPage"})
+        navigation.navigate('Vehicles', {screen:"AddVehiclesPage", initial:false})
     }
 
     const handleNavigateAddRefueling=()=>{

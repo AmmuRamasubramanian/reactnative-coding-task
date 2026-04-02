@@ -7,6 +7,7 @@ import Vehiclestack from "./Vehiclestack";
 import Refuelingstack from "./Refuelingstack";
 import { useCallback } from "react";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { PortalHost } from "@gorhom/portal";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,6 +22,7 @@ export default function Bottomstack() {
     },[])
 
     return (
+        <>
         <Tab.Navigator
             screenOptions={({route})=>({
                 tabBarStyle:getFocusedRouteName(route),
@@ -58,7 +60,10 @@ export default function Bottomstack() {
         <Tab.Screen  name="Home" component={HomePage} />
         <Tab.Screen  name="Refueling" component={Refuelingstack} />
         <Tab.Screen  name="Vehicles" component={Vehiclestack} />
+        
         </Tab.Navigator>
+        <PortalHost name="BottomsheetWrap"/>
+        </>
     );
 }
 
