@@ -18,6 +18,8 @@ const SCREEN_HEIGHT=Dimensions.get("window").height
 export default function AddRefuelingPage(){
 
     const safeAreaInsets=useSafeAreaInsets()
+    const addRecordForVehicle=useMileageAppStore((state)=>state.addRecordForVehicles)
+
     const caleRef=useRef(null)
     const sheetRef=useRef(null)
     const navigation=useNavigation()
@@ -26,10 +28,8 @@ export default function AddRefuelingPage(){
     const [refuellingdate, setRefuellingdate]=useState('')
     const [odometerstart, setOdometerstart]=useState('')
     const [odometerend, setOdometerEnd]=useState('')
-    const [fuel, setFuel]=useState('')
+    const [fuelConsumption, setFuelConsumption]=useState('')
     const [price, setPrice]=useState('')
-
-    const snapPoints = useMemo(() => ["50%"], []);
 
     const handleOpenVehicleNamePopup=()=>{
         sheetRef.current?.present()
@@ -53,25 +53,12 @@ export default function AddRefuelingPage(){
     }
 
     const handleChangefuelConsump=(text)=>{
-        setFuel(text)
+        setFuelConsumption(text)
     }
 
     const handleChangePrice=(text)=>{
         setPrice(text)
     }
-
-    const renderBackdrop = useCallback(
-		(props) => (
-			<BottomSheetBackdrop
-				{...props}
-				disappearsOnIndex={-1}
-				appearsOnIndex={0}
-                pressBehavior={"close"}
-                style={{backgroundColor:"rgba(0, 0, 0, 0.5)"}}
-			/>
-		),
-		[]
-	);
 
     const handleSelectVehicleItem=(item)=>{
         setvehicleItem(item)
@@ -80,16 +67,25 @@ export default function AddRefuelingPage(){
 
     const isAddenabled=useMemo(()=>{
         return vehicleItem && Object.keys(vehicleItem).length!==0 && odometerend && odometerend.length!==0 &&
-            odometerstart && odometerstart.length!==0 && fuel && fuel.length!==0 && 
+            odometerstart && odometerstart.length!==0 && fuelConsumption && fuelConsumption.length!==0 && 
             refuellingdate && refuellingdate.length!==0 && price && price.length!==0
-    },[vehicleItem, odometerend, odometerstart, fuel, price, refuellingdate])
+    },[vehicleItem, odometerend, odometerstart, fuelConsumption, price, refuellingdate])
 
     const handleGoBack=()=>{
         navigation.goBack()
     }
 
     const handleAddRefuelling=()=>{
-        const obj={}
+        const obj={
+            "price":price,
+            "date":refuellingdate,
+            "fuel_consumption":fuelConsumption,
+            "odometer_start":odometerstart,
+            "odometer_end":odometerend,
+            "id":Date.now().toString()
+        }
+        addRecordForVehicle(vehicleItem.id, obj)
+        navigation.goBack()
     }
 
     return(
@@ -149,7 +145,7 @@ export default function AddRefuelingPage(){
                         <TextInput
                             autoCorrect={false}
                             autoCapitalize='none'
-                            value={fuel}
+                            value={fuelConsumption}
                             onChangeText={handleChangefuelConsump}
                             placeholder='Consumption (in L)'
                             placeholderTextColor={colors.greenBtnColor}

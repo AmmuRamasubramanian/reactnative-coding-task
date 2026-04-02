@@ -4,7 +4,7 @@ export const useMileageAppStore=create((set)=>({
     vehicles:[],
     addVehicles:(value)=>set((state)=>({vehicles:[value, ...state.vehicles]})),
     records:{},
-    addRecord: (vehicleId, value) =>
+    addRecordForVehicles: (vehicleId, value) =>
         set((state) => ({
             records: {
             ...state.records,
