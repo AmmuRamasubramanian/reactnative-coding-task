@@ -14,6 +14,15 @@ export const useMileageAppStore=create((set)=>({
             ],
         },
     })),
+    removeRecordForVehicles: (vehicleId, recordId) =>
+    set((state) => ({
+        records: {
+        ...state.records,
+        [vehicleId]: (state.records[vehicleId] || []).filter(
+            (item) => item.id !== recordId
+        ),
+        },
+    })),
     selectedRecordItem:{},
     selectNewRecordItem:(value)=>set((state)=>({selectedRecordItem:value}))
 }))

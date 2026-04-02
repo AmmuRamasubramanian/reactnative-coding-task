@@ -12,6 +12,7 @@ import RecordDeleteConfirmPopup from '../RecordDeleteConfirmPopup/RecordDeleteCo
 export default function RefuelingRecordDetailsPage(){
 
     const selectedRecordItem=useMileageAppStore((state)=>state.selectedRecordItem)
+    const removeRecordForVehicles=useMileageAppStore((state)=>state.removeRecordForVehicles)
     const safeAreaInsets=useSafeAreaInsets()
     const navigation=useNavigation()
 
@@ -36,7 +37,8 @@ export default function RefuelingRecordDetailsPage(){
     }
 
     const onPressDelete=()=>{
-        
+        removeRecordForVehicles(selectedRecordItem?.vehicle_id, selectedRecordItem?.id)
+        navigation.goBack()
     }
 
     return(

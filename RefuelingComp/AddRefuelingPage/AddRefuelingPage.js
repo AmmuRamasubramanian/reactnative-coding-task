@@ -83,7 +83,8 @@ export default function AddRefuelingPage(){
             "odometer_start":odometerstart,
             "odometer_end":odometerend,
             "id":Date.now().toString(),
-            "vehicle_name":vehicleItem.vehicle_name
+            "vehicle_name":vehicleItem.vehicle_name,
+            "vehicle_id":vehicleItem.id
         }
         addRecordForVehicle(vehicleItem.id, obj)
         navigation.goBack()
