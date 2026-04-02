@@ -6,6 +6,8 @@ import moment from 'moment'
 import { useNavigation } from '@react-navigation/native'
 import Icons from '../../Icons'
 import colors from '../../colors'
+import { useState } from 'react'
+import RecordDeleteConfirmPopup from '../RecordDeleteConfirmPopup/RecordDeleteConfirmPopup'
 
 export default function RefuelingRecordDetailsPage(){
 
@@ -19,12 +21,22 @@ export default function RefuelingRecordDetailsPage(){
 
     const addedTime=moment(Number(selectedRecordItem?.id)).format("Do MMM 'YY")
 
+    const [showDeleteConfirm, setShowDeleteConfirm]=useState(false)
+
     const handleGoBack=()=>{
         navigation.goBack()
     } 
 
     const onPressDeleteRecord=()=>{
+        setShowDeleteConfirm(true)
+    }
 
+    const handleCloseDeleteRecConfirm=()=>{
+        setShowDeleteConfirm(false)
+    }
+
+    const onPressDelete=()=>{
+        
     }
 
     return(
@@ -70,6 +82,15 @@ export default function RefuelingRecordDetailsPage(){
                     <Text style={styles.editBtnText}>Edit</Text>
                 </Pressable>
             </View>
+            {
+                showDeleteConfirm &&
+                <>
+                <RecordDeleteConfirmPopup
+                    onClose={handleCloseDeleteRecConfirm}
+                    onPressDelete={onPressDelete}
+                />
+                </>
+            }
         </View>
     )
 }
