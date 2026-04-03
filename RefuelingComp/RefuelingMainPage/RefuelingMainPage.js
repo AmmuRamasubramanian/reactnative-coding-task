@@ -143,7 +143,7 @@ export default function RefuelingMainPage(){
                 <View style={styles.titleDiv}>
                     <Text style={styles.title}>Refuelling</Text>
                     {
-                        ((allRecordsOfSelected && allRecordsOfSelected.length!==0) || (vehicleslist && vehicleslist.length!==0)) && selectedVehicleItem &&
+                        ((allRecordsOfSelected && allRecordsOfSelected.length!==0) || (vehicleslist && vehicleslist.length>1)) && selectedVehicleItem &&
                         <Pressable style={styles.selectedVehicleBox} onPress={handleOpenVehicleList}>
                             <Text style={styles.selectedVehicleText} numberOfLines={1} ellipsizeMode='tail'>{selectedVehicleItem?.vehicle_name}</Text>
                             <View style={styles.rotatedIcon}>
@@ -168,8 +168,13 @@ export default function RefuelingMainPage(){
                         <>
                         <View style={styles.numOfRecDiv}>
                             <Text style={styles.numberOfRecText}>{selectedRecords?.length} Records</Text>
+                            {
+                            selectedRange &&
+                            <>
                             <View style={styles.vertLineOfNumOfRec}/>
                             <Text style={styles.numberOfRecText}>{formattedStartDate} - Today</Text>
+                            </>
+                            }
                         </View>
                         <FlashList
                             data={selectedRecords}
