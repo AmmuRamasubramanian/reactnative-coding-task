@@ -6,7 +6,7 @@ import isEqual from 'lodash.isequal'
 
 const DatesRangePopup=memo(({selectedRange, handleSelectRange})=>{
 
-    const arr=[7, 30, 60, 90, 120, 360]
+    const arr=[7, 30, 60, 90, 120, 360, null]
 
     const MemoizedRenderItem=memo(({item, isFirstIndex, isSelected})=>{
         return(
@@ -14,7 +14,7 @@ const DatesRangePopup=memo(({selectedRange, handleSelectRange})=>{
                 onPress={()=>handleSelectRange(item)} 
                 style={[styles.dateItem, !isFirstIndex && {marginTop:15}, isSelected && {backgroundColor:"#D9F0F1"}]}
             >
-                <Text style={styles.dateText}>Last {item} days</Text>
+                <Text style={styles.dateText}>{item ? `Last ${item} days` : "Show all"}</Text>
             </Pressable>
         )
     },(r1, r2)=>{
@@ -33,14 +33,14 @@ const DatesRangePopup=memo(({selectedRange, handleSelectRange})=>{
                 data={arr}
                 renderItem={({item, index})=>{
                     const isFirstIndex=index===0
-                    const isSelected=selectedRange && selectedRange==item
+                    const isSelected=selectedRange==item
                     return(
                         <>
                         {renderItem({item}, isFirstIndex, isSelected)}
                         </>
                     )
                 }}
-                keyExtractor={(item, index)=>item.toString()}
+                keyExtractor={(item, index)=>index.toString()}
                 contentContainerStyle={{paddingBottom:100, paddingTop:15}}
                 showsVerticalScrollIndicator={false}
                 estimatedItemSize={45}

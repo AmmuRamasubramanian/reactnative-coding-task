@@ -43,7 +43,7 @@ export default function RefuelingMainPage(){
             return []
         }
         const allRecords= recordslist[selectedVehicleItem?.id]
-        if (!selectedRange) return allRecords  
+        if (!selectedRange) return allRecords.sort((a, b) => new Date(b.date) - new Date(a.date))
 
         const cutoffDate = new Date()
         cutoffDate.setDate(cutoffDate.getDate() - selectedRange)
@@ -150,11 +150,11 @@ export default function RefuelingMainPage(){
                         <>
                         <View style={styles.contentContainerrecord}>
                         <Pressable style={styles.rangeBox} onPress={handleOpenRangePopup}>
-                            <Text style={styles.rangeText}>Last {selectedRange} days</Text>
+                            <Text style={styles.rangeText}>{selectedRange ? `Last ${selectedRange} days` : "All Records"}</Text>
                             <Icons.chevronright width={13} height={13} fill={colors.greenBtnColor}/>
                         </Pressable>
                         {
-                        selectedRecords && selectedRecords.length!==0 ?
+                        !(selectedRecords && selectedRecords.length!==0) ?
                         <FlashList
                             data={selectedRecords}
                             renderItem={({item, index})=>{
@@ -172,6 +172,10 @@ export default function RefuelingMainPage(){
                         />
                         :
                         <>
+                        <View style={[styles.innercontainer]}>
+                            <Icons.cloud width={150} height={90}/>
+                            <Text style={styles.nofuleingRecordText}>No fueling records in the last {selectedRange} days!</Text>
+                        </View>
                         </>
                         } 
                         </View>
