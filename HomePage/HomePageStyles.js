@@ -157,7 +157,7 @@ export default StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        marginTop: 30,
+        marginTop: 35,
     },
     subHeaderText: {
         color: colors.greenBtnColor,
@@ -168,7 +168,7 @@ export default StyleSheet.create({
         color: colors.red_3,
         fontFamily: "inter_semibold",
         fontSize: normalize(13),
-        marginRight: 10
+        marginRight: 8
     },
     subHeaderInnerflex: {
         display: "flex",
@@ -176,7 +176,10 @@ export default StyleSheet.create({
         alignItems: "center"
     },
     contentOfRefulleingHist: {
-        backgroundColor: colors.lighetestWhite
+        backgroundColor: colors.lightWhitish,
+        padding:15,
+        marginTop:10,
+        borderRadius:10
     },
     //refuelling data item-----------------------------------------------
     recordItem: {

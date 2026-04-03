@@ -73,7 +73,7 @@ export default function HomePage(){
     }
 
     const handleNavigateRefuelling=()=>{
-        navigation.navigate('AddRefuelingPage')
+        navigation.navigate('Refueling')
     }
 
     const MemoizedRenderItem=memo(({item, isFirstIndex})=>{
@@ -112,14 +112,14 @@ export default function HomePage(){
                 <View style={styles.userAbsDiv}>
                         <Icons.user width={20} height={20} fill={"black"}/>
                     </View>
-                <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.headerOfHome}>
                     <Icons.Union width={34} height={34}/>
                 </View>
                 <Text style={styles.title}>Hi Snack Muncher</Text>
                 {
-                vehicleslist && vehicleslist.length!==0 && selectedVehicleItem ?
+                (vehicleslist && vehicleslist.length!==0 && selectedVehicleItem) ?
                 <>
+                <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.vehicleWithItemsDiv}>
                     <Text style={styles.subtitleWithVehicle}>Here is everything about your</Text>
                     <Pressable style={styles.vehicleItemdiv} onPress={handleOpenVehicleList}>
@@ -154,7 +154,7 @@ export default function HomePage(){
                         <Text style={styles.subHeaderText}>Refuelling History</Text>
                         <Pressable style={styles.subHeaderInnerflex} onPress={handleNavigateRefuelling}>
                             <Text style={styles.seeallText}>See all</Text>
-                            <Icons.chevronright width={15} height={15} fill={colors.red_3}/>
+                            <Icons.chevronright width={12} height={12} fill={colors.red_3}/>
                         </Pressable>
                     </View>
                     <View style={styles.contentOfRefulleingHist}>
@@ -182,6 +182,7 @@ export default function HomePage(){
                     </>
                     }
                 </View>
+                </ScrollView>
                 </>
                 :
                 <>
@@ -197,7 +198,6 @@ export default function HomePage(){
                 </View>
                 </>
                 }
-                </ScrollView>
             </View>
             <BottomSheetWithDynamicFlatList
                 ref={vehiclelistRef}
