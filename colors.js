@@ -28,6 +28,7 @@ export default {
     bluishdrksteelBlue:'#263249',
     red:'#8D2F2F',
     red_2:'#FF725E',
+    red_3:'#EB655F',
     darkbuttonBlue:'#00264d',
     veryDrkGreyishBlue:'#13171E',
     orange:'#d15b2c',

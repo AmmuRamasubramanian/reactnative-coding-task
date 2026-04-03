@@ -36,7 +36,7 @@ export default function RefuelingMainPage(){
         }
         const allRecords= recordslist[selectedVehicleItem?.id]
         return allRecords  
-    },[selectedRange, selectedVehicleItem])
+    },[selectedVehicleItem, recordslist])
 
     const selectedRecords=useMemo(()=>{
         if(!selectedVehicleItem){

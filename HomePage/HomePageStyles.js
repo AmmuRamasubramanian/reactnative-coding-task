@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet } from "react-native";
 import { normalize } from "../helperfunctions";
 import colors from "../colors";
 
-const SCREEN_HEIGHT=Dimensions.get("window").height
+const SCREEN_HEIGHT = Dimensions.get("window").height
 
 export default StyleSheet.create({
     container: {
@@ -36,7 +36,7 @@ export default StyleSheet.create({
         width: "100%"
     },
     title: {
-        color: "#EB655F",
+        color: colors.red_3,
         textAlign: "center",
         fontSize: normalize(19),
         marginTop: 15,
@@ -65,7 +65,7 @@ export default StyleSheet.create({
         textAlign: "center",
         lineHeight: 20,
         fontFamily: "inter_medium",
-        marginHorizontal:15
+        marginHorizontal: 15
     },
     addvehicleBtn: {
         backgroundColor: colors.greenBtnColor,
@@ -146,5 +146,75 @@ export default StyleSheet.create({
         textAlign: "center",
         fontFamily: "inter_medium",
         lineHeight: 22,
-    }
+    },
+    contentOfRefuellingdata: {
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+    },
+    subHeaderdiv: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginTop: 30,
+    },
+    subHeaderText: {
+        color: colors.greenBtnColor,
+        fontFamily: "inter_semibold",
+        fontSize: normalize(14),
+    },
+    seeallText: {
+        color: colors.red_3,
+        fontFamily: "inter_semibold",
+        fontSize: normalize(13),
+        marginRight: 10
+    },
+    subHeaderInnerflex: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    contentOfRefulleingHist: {
+        backgroundColor: colors.lighetestWhite
+    },
+    //refuelling data item-----------------------------------------------
+    recordItem: {
+        display: "flex",
+        alignItems: "center",
+        paddingRight: 14,
+        paddingLeft: 10,
+        paddingVertical: 12,
+        borderRadius: 6,
+        backgroundColor: "white",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    recordInnerflex: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    dateTextOfRecord: {
+        color: colors.greenBtnColor,
+        fontFamily: "inter_medium",
+        fontSize: normalize(13)
+    },
+    fuelText: {
+        color: colors.greenBtnColor,
+        fontFamily: "inter_reg",
+        fontSize: normalize(11),
+        marginTop: 5
+    },
+    priceText: {
+        color: colors.greenBtnColor,
+        fontFamily: "inter_medium",
+        fontSize: normalize(13),
+        marginTop: 5
+    },
 })
