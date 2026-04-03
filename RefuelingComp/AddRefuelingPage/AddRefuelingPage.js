@@ -30,6 +30,8 @@ export default function AddRefuelingPage(){
     const sheetRef=useRef(null)
     const navigation=useNavigation()
 
+    const recordslist=useMileageAppStore((state)=>state.records)
+
     const initialVehicleObj=isEdit ? {"id":selectedRecordItem?.vehicle_id, vehicle_name:selectedRecordItem?.vehicle_name} : null
     const [vehicleItem, setvehicleItem]=useState(initialVehicleObj)
     const [refuellingdate, setRefuellingdate]=useState(isEdit ? selectedRecordItem?.date : '')
@@ -37,9 +39,46 @@ export default function AddRefuelingPage(){
     const [odometerend, setOdometerEnd]=useState(isEdit ? selectedRecordItem.odometer_end :'')
     const [fuelConsumption, setFuelConsumption]=useState(isEdit ? selectedRecordItem?.fuel_consumption : '')
     const [price, setPrice]=useState(isEdit ? selectedRecordItem?.price : '')
+    const [errorMsg, setErrorMsg]=useState({})
+    const isErrorMsgOdometer= errorMsg && errorMsg.odometer && errorMsg.odometer.length!==0
+
+    const validateOdometer = () => {
+        const start = parseFloat(odometerstart)
+        const end = parseFloat(odometerend)
+
+        // Rule 1: start must be less than end
+        if (start >= end) {
+            return "Start reading must be less than end reading"
+        }
+
+        const vehicleRecords = (recordslist[vehicleItem?.id] || [])
+            .filter(r => isEdit ? r.id !== selectedRecordItem?.id : true) 
+            .sort((a, b) => new Date(a.date) - new Date(b.date))
+
+        const currentDate = new Date(refuellingdate)
+        
+        const previousRecord = vehicleRecords
+            .filter(r => new Date(r.date) < currentDate)
+            .at(-1) 
+
+        const nextRecord = vehicleRecords
+            .find(r => new Date(r.date) > currentDate) 
+
+        // Rule 2: start must be >= previous record's end
+        if (previousRecord && start < parseFloat(previousRecord.odometer_end)) {
+            return `Start reading must be at least ${previousRecord.odometer_end} (previous record's end)`
+        }
+
+        // Rule 3: end must be <= next record's start
+        if (nextRecord && end > parseFloat(nextRecord.odometer_start)) {
+            return `End reading must be at most ${nextRecord.odometer_start} (next record's start)`
+        }
+
+        return true
+    }
 
     const handleOpenVehicleNamePopup=()=>{
-        if(!isEdit){
+        if(isEdit){
             return
         }
         sheetRef.current?.present()
@@ -56,10 +95,16 @@ export default function AddRefuelingPage(){
 
     const handleChangeOdometerStart=(text)=>{
         setOdometerstart(text)
+        if(isErrorMsgOdometer){
+            setErrorMsg({})
+        }
     }
 
     const handleChangeOdometerEnd=(text)=>{
         setOdometerEnd(text)
+        if(isErrorMsgOdometer){
+            setErrorMsg({})
+        }
     }
 
     const handleChangefuelConsump=(text)=>{
@@ -86,26 +131,35 @@ export default function AddRefuelingPage(){
     }
 
     const handleAddRefuelling=()=>{
-        const obj={
-            "price":price,
-            "date":refuellingdate,
-            "fuel_consumption":fuelConsumption,
-            "odometer_start":odometerstart,
-            "odometer_end":odometerend,
-            "vehicle_name":vehicleItem.vehicle_name,
-            "vehicle_id":vehicleItem.id
-        }
-        if(isEdit){
-            updateRecordItem(obj)
-            updateRecordForVehicles(vehicleItem.id, selectedRecordItem.id, obj)
-        }else{
-            const newObj={
-                ...obj,
-                "id":Date.now().toString(),
+
+        //odometer check---------------------
+        const isValid=validateOdometer()
+        console.log("isValid", isValid)
+        if(isValid===true){
+            setErrorMsg({})
+            const obj={
+                "price":price,
+                "date":refuellingdate,
+                "fuel_consumption":fuelConsumption,
+                "odometer_start":odometerstart,
+                "odometer_end":odometerend,
+                "vehicle_name":vehicleItem.vehicle_name,
+                "vehicle_id":vehicleItem.id
             }
-            addRecordForVehicle(vehicleItem.id, newObj)
+            if(isEdit){
+                updateRecordItem(obj)
+                updateRecordForVehicles(vehicleItem.id, selectedRecordItem.id, obj)
+            }else{
+                const newObj={
+                    ...obj,
+                    "id":Date.now().toString(),
+                }
+                addRecordForVehicle(vehicleItem.id, newObj)
+            }
+            navigation.goBack()
+        }else{
+            setErrorMsg({"odometer":isValid})
         }
-        navigation.goBack()
     }
 
     return(
@@ -132,7 +186,7 @@ export default function AddRefuelingPage(){
                 <View style={styles.inputGap}/>
                 <Text style={styles.inputTitle}>Odometer</Text>
                 <View style={styles.flexcontainerOfBtns}>
-                    <View style={[styles.inputBox, {width:"48.5%"}]}>
+                    <View style={[styles.inputBox, {width:"48.5%"}, isErrorMsgOdometer&& styles.errorMsgWrapper]}>
                         <TextInput
                             autoCorrect={false}
                             autoCapitalize='none'
@@ -145,7 +199,7 @@ export default function AddRefuelingPage(){
                         />
                     </View>
                     <View style={{marginLeft:10}}/>
-                    <View style={[styles.inputBox, {width:"48.5%"}]}>
+                    <View style={[styles.inputBox, {width:"48.5%"}, isErrorMsgOdometer && styles.errorMsgWrapper]}>
                         <TextInput
                             autoCorrect={false}
                             autoCapitalize='none'
@@ -158,6 +212,10 @@ export default function AddRefuelingPage(){
                         />
                     </View>
                 </View>
+                {
+                    isErrorMsgOdometer &&
+                    <Text style={styles.errorMsg}>{errorMsg["odometer"]}</Text>
+                }
                 <View style={styles.inputGap}/>
                 <Text style={styles.inputTitle}>Fuel</Text>
                 <View style={styles.flexcontainerOfBtns}>
@@ -224,6 +282,7 @@ export default function AddRefuelingPage(){
                     onDayPress={(date)=>{
                         console.log(date)
                         setRefuellingdate(date.dateString)
+                        setErrorMsg({})
                     }}
                     markedDates={{
                         [refuellingdate]: {marked: true, selectedColor:colors.greenBtnColor}

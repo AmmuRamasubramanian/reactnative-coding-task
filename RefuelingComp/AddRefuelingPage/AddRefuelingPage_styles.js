@@ -39,6 +39,9 @@ export default StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 3,
+        borderWidth:0.8,
+        borderStyle:"solid",
+        borderColor:"transparent"
     },
     inputText: {
         color: colors.greenBtnColor,
@@ -105,4 +108,14 @@ export default StyleSheet.create({
         fontSize: normalize(13),
         fontFamily: "inter_medium"
     },
+    errorMsgWrapper:{
+        borderColor:colors.pinkishred,
+    },
+    errorMsg:{
+        color:colors.pinkishred,
+        fontFamily:"inter_medium",
+        fontSize:normalize(13),
+        marginTop:10,
+        lineHeight:22
+    }
 })

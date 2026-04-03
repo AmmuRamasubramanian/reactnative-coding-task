@@ -1,18 +1,23 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { View , Text, Pressable} from "react-native";
+import { View , Text, Pressable, Dimensions} from "react-native";
 import styles from './HomePageStyles'
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icons from "../Icons";
 import { useNavigation } from "@react-navigation/native";
 import { useMileageAppStore } from "../store";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import colors from "../colors";
 import { Image } from "expo-image";
+import BottomSheetWithDynamicFlatList from "../ReusableRootComps/BottomsheetWithDynamicList";
+import VehicleListPopup from "../VehiclesComp/VehicleListPopup/VehicleListPopup";
+
+const SCREEN_HEIGHT=Dimensions.get("window").height
 
 export default function HomePage(){
 
     const safeAreaInsets=useSafeAreaInsets()
     const navigation=useNavigation()
+    const vehiclelistRef=useRef(null)
     const vehicleslist=useMileageAppStore((state)=>state.vehicles)
 
     const [selectedVehicleItem, setSelectedVehicleitem]=useState(null)
@@ -38,6 +43,19 @@ export default function HomePage(){
         });
     }
 
+    const handleOpenVehicleList=()=>{
+        vehiclelistRef.current?.present()
+    }
+
+    const handleCloseVehicleList=()=>{
+        vehiclelistRef.current?.dismiss()
+    }
+
+    const handleSelectVehicleItem=(item)=>{
+        setSelectedVehicleitem(item)
+        handleCloseVehicleList()
+    }
+
     return(
         <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingBottom:safeAreaInsets.bottom, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right}]}>
             <LinearGradient
@@ -59,7 +77,7 @@ export default function HomePage(){
                 <>
                 <View style={styles.vehicleWithItemsDiv}>
                     <Text style={styles.subtitleWithVehicle}>Here is everything about your</Text>
-                    <Pressable style={styles.vehicleItemdiv}>
+                    <Pressable style={styles.vehicleItemdiv} onPress={handleOpenVehicleList}>
                         <Text style={styles.vehicleText} numberOfLines={1} ellipsizeMode="tail">{truncatedName}</Text>
                         <View style={{transform:[{rotate:"90deg"}]}}>
                         <Icons.chevronright width={14} height={14} fill={colors.greenBtnColor}/>
@@ -107,6 +125,16 @@ export default function HomePage(){
                 </>
                 }
             </View>
+            <BottomSheetWithDynamicFlatList
+                ref={vehiclelistRef}
+                maxHeight={SCREEN_HEIGHT*0.8}
+                showSpace={true}
+            >
+                <VehicleListPopup
+                    handleSelectVehicleItem={handleSelectVehicleItem}
+                    vehicleItem={selectedVehicleItem}
+                />
+            </BottomSheetWithDynamicFlatList>
         </View>
     )
 }
