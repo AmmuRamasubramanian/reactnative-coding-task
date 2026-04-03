@@ -52,7 +52,7 @@ export default function AddRefuelingPage(){
         }
 
         const vehicleRecords = (recordslist[vehicleItem?.id] || [])
-            .filter(r => isEdit ? r.id !== selectedRecordItem?.id : true) 
+            .filter(r => isEdit ? r.id != selectedRecordItem?.id : true) 
             .sort((a, b) => new Date(a.date) - new Date(b.date))
 
         const currentDate = new Date(refuellingdate)
