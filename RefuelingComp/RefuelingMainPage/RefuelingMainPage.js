@@ -55,6 +55,12 @@ export default function RefuelingMainPage(){
         }).sort((a, b) => new Date(b.date) - new Date(a.date))
     },[recordslist, selectedVehicleItem, selectedRange])
 
+    const formattedStartDate=useMemo(()=>{
+        if(!selectedRange) return 
+        const startDate = moment().subtract(30, 'days')
+        return moment(startDate).format("Do MMM 'YY")
+    },[selectedRange])
+
     const handleNavigateaddvehicles=()=>{
         navigation.navigate('Vehicles', {screen:"AddVehiclesPage", initial:false})
     }
@@ -154,7 +160,13 @@ export default function RefuelingMainPage(){
                             <Icons.chevronright width={13} height={13} fill={colors.greenBtnColor}/>
                         </Pressable>
                         {
-                        !(selectedRecords && selectedRecords.length!==0) ?
+                        (selectedRecords && selectedRecords.length!==0) ?
+                        <>
+                        <View style={styles.numOfRecDiv}>
+                            <Text style={styles.numberOfRecText}>{selectedRecords?.length} Records</Text>
+                            <View style={styles.vertLineOfNumOfRec}/>
+                            <Text style={styles.numberOfRecText}>{formattedStartDate} - Today</Text>
+                        </View>
                         <FlashList
                             data={selectedRecords}
                             renderItem={({item, index})=>{
@@ -170,6 +182,7 @@ export default function RefuelingMainPage(){
                             estimatedItemSize={60}
                             contentContainerStyle={{paddingBottom:100, paddingTop:5}}
                         />
+                        </>
                         :
                         <>
                         <View style={[styles.innercontainer]}>

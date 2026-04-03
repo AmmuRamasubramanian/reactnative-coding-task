@@ -189,5 +189,25 @@ export default StyleSheet.create({
         fontFamily:"inter_medium",
         fontSize:normalize(13),
         marginRight:10
+    },
+    numOfRecDiv:{
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center",
+        marginTop:12,
+        flexDirection:"row"
+    },
+    numberOfRecText:{
+        color:colors.greenBtnColor,
+        fontFamily:"inter_medium",
+        fontSize:normalize(12),
+    },
+    vertLineOfNumOfRec:{
+        height:12,
+        minHeight:12,
+        backgroundColor:colors.greenBtnColor,
+        width:1,
+        minWidth:1,
+        marginHorizontal:10
     }
 })
