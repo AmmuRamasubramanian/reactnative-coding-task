@@ -44,11 +44,12 @@ export default StyleSheet.create({
     },
     subTitle: {
         color: colors.greenBtnColor,
-        fontSize: normalize(13),
+        fontSize: normalize(15),
         marginTop: 10,
         textAlign: "center",
         fontFamily: "inter_medium",
-        lineHeight: 22,
+        lineHeight: 23,
+        marginHorizontal:15
     },
     subtitleWithVehicle: {
         color: colors.greenBtnColor,
@@ -87,7 +88,7 @@ export default StyleSheet.create({
         fontFamily: "inter_medium"
     },
     vertGap: {
-        marginTop: "40%"
+        marginTop: "35%"
     },
     innercontainer: {
         display: "flex",
