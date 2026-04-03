@@ -22,6 +22,7 @@ export default function RefuelingMainPage(){
     const safeAreaInsets=useSafeAreaInsets()
     const vehiclelistRef=useRef(null)
     const rangeRef=useRef(null)
+    const flatListRef=useRef(null)
 
     const vehicleslist=useMileageAppStore((state)=>state.vehicles)
     const recordslist=useMileageAppStore((state)=>state.records)
@@ -184,6 +185,10 @@ export default function RefuelingMainPage(){
                             showsVerticalScrollIndicator={false}
                             estimatedItemSize={60}
                             contentContainerStyle={{paddingBottom:100, paddingTop:5}}
+                            onContentSizeChange={() => {
+                                flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
+                            }}
+                            ref={flatListRef}
                         />
                         </>
                         :

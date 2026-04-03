@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import Icons from '../../Icons';
 import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useRef } from 'react';
 import isEqual from 'lodash.isequal';
 import { Image } from 'expo-image';
 import { FlashList } from '@shopify/flash-list';
@@ -15,6 +15,7 @@ const SCREEN_WIDTH=Dimensions.get('window').width
 export default function VehiclesMainPage(){
     const navigation=useNavigation()
     const safeAreaInsets=useSafeAreaInsets()
+    const flatListRef=useRef(null)
 
     const vehicleslist=useMileageAppStore((state)=>state.vehicles)
 
@@ -86,6 +87,10 @@ export default function VehiclesMainPage(){
                         showsVerticalScrollIndicator={false}
                         keyExtractor={(item)=>item.id.toString()}
                         contentContainerStyle={{paddingBottom:100}}
+                        ref={flatListRef}
+                        onContentSizeChange={() => {
+                            flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
+                        }}
                     />
                     </View>
                     <Pressable style={styles.addRecordBtn} onPress={handleNavigateaddvehicles}>
