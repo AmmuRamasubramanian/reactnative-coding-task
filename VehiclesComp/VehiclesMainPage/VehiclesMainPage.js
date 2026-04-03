@@ -62,7 +62,7 @@ export default function VehiclesMainPage(){
             <LinearGradient
                 colors={['#D0EAEA', '#F6F6EC']}
                 style={styles.background}
-                start={{ x: 0, y: 0 }}
+                start={{ x: 0.2, y: 0.2 }}
                 end={{ x: 1, y: 1 }}
             />
             <View style={styles.mainTitleDiv}>

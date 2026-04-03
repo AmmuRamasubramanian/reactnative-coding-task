@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { View , Text, Pressable, Dimensions} from "react-native";
+import { View , Text, Pressable, Dimensions, ScrollView} from "react-native";
 import styles from './HomePageStyles'
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icons from "../Icons";
@@ -59,15 +59,16 @@ export default function HomePage(){
     return(
         <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingBottom:safeAreaInsets.bottom, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right}]}>
             <LinearGradient
-                colors={['#D0EAEA', '#F6F6EC']}
+                colors={['#ACDADB', '#F0F0E0']}
                 style={styles.background}
-                start={{ x: 0, y: 0 }}
+                start={{ x: 0.2, y: 0.2 }}
                 end={{ x: 1, y: 1 }}
             />
             <View style={styles.contentContainer}>
                 <View style={styles.userAbsDiv}>
                         <Icons.user width={20} height={20} fill={"black"}/>
                     </View>
+                <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.headerOfHome}>
                     <Icons.Union width={34} height={34}/>
                 </View>
@@ -101,7 +102,7 @@ export default function HomePage(){
                             </>
                         }
                     </View>
-                    <View style={{marginTop:26}}/>
+                    <View style={{marginTop:30}}/>
                     <Icons.cloud width={150} height={90}/>
                     <Text style={styles.addRefuellingText}>It’s time to add the refuelling details to get more insights</Text>
                     <Pressable style={styles.addvehicleBtn} onPress={handleNavigateRefuelling}>
@@ -124,6 +125,7 @@ export default function HomePage(){
                 </View>
                 </>
                 }
+                </ScrollView>
             </View>
             <BottomSheetWithDynamicFlatList
                 ref={vehiclelistRef}

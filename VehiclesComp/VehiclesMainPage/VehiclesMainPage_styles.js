@@ -1,6 +1,8 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { normalize } from "../../helperfunctions";
 import colors from "../../colors";
+
+const SCREEN_HEIGHT=Dimensions.get("window").height
 
 export default StyleSheet.create({
     container: {
@@ -13,7 +15,7 @@ export default StyleSheet.create({
         left: 0,
         right: 0,
         top: 0,
-        height: "100%",
+        height: SCREEN_HEIGHT,
     },
     contentcontainer: {
         flex: 1,
