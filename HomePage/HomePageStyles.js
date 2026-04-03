@@ -220,4 +220,43 @@ export default StyleSheet.create({
         fontSize: normalize(13),
         marginTop: 5
     },
+    //fuel insight--------------------------------------
+    fuelInsightsFlex:{
+        display:"flex",
+        flexDirection:"row",
+        alignItems:"center",
+        width:"100%",
+        backgroundColor: colors.lightWhitish,
+        padding:12,
+        marginTop:10,
+        borderRadius:10
+    },
+    fuelBox:{
+        width:"46%",
+        minWidth:"46%",
+        height:120,
+        minHeight:120,
+        backgroundColor:"white",
+        justifyContent:"space-between",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+        borderRadius:6,
+        padding:12,
+        flexDirection:"column"
+    },
+    fuelTitle:{
+        color:colors.greenBtnColor,
+        fontFamily:"inter_medium",
+        fontSize:normalize(15),
+        lineHeight:22
+    },
+    fuelConsumpValue:{
+        color:colors.greenBtnColor,
+        fontFamily:"inter_medium",
+        fontSize:normalize(15),
+        lineHeight:22,
+    }
 })

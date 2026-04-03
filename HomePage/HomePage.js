@@ -39,6 +39,22 @@ export default function HomePage(){
 
     }, [selectedVehicleItem, recordslist])
 
+    const lastFuelConsumption = useMemo(() => {
+        if (!allRecordsOfSelected.length) return 0
+
+        return allRecordsOfSelected[0]?.fuel_consumption || 0
+    }, [allRecordsOfSelected])
+
+    const avgFuelConsumption = useMemo(() => {
+        if (!allRecordsOfSelected.length) return 0
+
+        const total = allRecordsOfSelected.reduce((sum, item) => {
+            return sum + (Number(item.fuel_consumption) || 0)
+        }, 0)
+
+        return (total / allRecordsOfSelected.length).toFixed(2)
+    }, [allRecordsOfSelected])
+
     useEffect(()=>{
         if(vehicleslist && vehicleslist.length!==0){
             setSelectedVehicleitem(vehicleslist[0])
@@ -101,7 +117,7 @@ export default function HomePage(){
     },[])
 
     return(
-        <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingBottom:safeAreaInsets.bottom, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right}]}>
+        <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right}]}>
             <LinearGradient
                 colors={['#ACDADB', '#F0F0E0']}
                 style={styles.background}
@@ -119,7 +135,7 @@ export default function HomePage(){
                 {
                 (vehicleslist && vehicleslist.length!==0 && selectedVehicleItem) ?
                 <>
-                <ScrollView showsVerticalScrollIndicator={false}>
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom:80}}>
                 <View style={styles.vehicleWithItemsDiv}>
                     <Text style={styles.subtitleWithVehicle}>Here is everything about your</Text>
                     <Pressable style={styles.vehicleItemdiv} onPress={handleOpenVehicleList}>
@@ -150,6 +166,20 @@ export default function HomePage(){
                     allRecordsOfSelected && allRecordsOfSelected.length!==0 ?
                     <>
                     <View style={styles.contentOfRefuellingdata}>
+                    <View style={styles.subHeaderdiv}>
+                        <Text style={styles.subHeaderText}>Fuel Insights</Text>
+                    </View>
+                    <View style={styles.fuelInsightsFlex}>
+                        <View style={styles.fuelBox}>
+                            <Text style={styles.fuelTitle}>Avg Fuel Consumption</Text>
+                            <Text style={styles.fuelConsumpValue}>{avgFuelConsumption} km/l</Text>
+                        </View>
+                        <View style={{marginLeft:5}}/> 
+                        <View style={styles.fuelBox}>
+                            <Text style={styles.fuelTitle}>Last Fuel Consumption</Text>
+                            <Text style={styles.fuelConsumpValue}>{lastFuelConsumption} km/l</Text>
+                        </View>
+                    </View>
                     <View style={styles.subHeaderdiv}>
                         <Text style={styles.subHeaderText}>Refuelling History</Text>
                         <Pressable style={styles.subHeaderInnerflex} onPress={handleNavigateRefuelling}>
