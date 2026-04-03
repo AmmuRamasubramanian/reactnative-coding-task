@@ -48,11 +48,14 @@ export default function RefuelingMainPage(){
         const cutoffDate = new Date()
         cutoffDate.setDate(cutoffDate.getDate() - selectedRange)
         cutoffDate.setHours(0, 0, 0, 0)
+        if(allRecords &&allRecords.length!==0){
 
         return allRecords.filter(record => {
             const recordDate = new Date(record.date) 
             return recordDate >= cutoffDate
         }).sort((a, b) => new Date(b.date) - new Date(a.date))
+        }
+        return []
     },[recordslist, selectedVehicleItem, selectedRange])
 
     const formattedStartDate=useMemo(()=>{

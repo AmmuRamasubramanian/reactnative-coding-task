@@ -8,6 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { memo, useCallback } from 'react';
 import isEqual from 'lodash.isequal';
 import { Image } from 'expo-image';
+import { FlashList } from '@shopify/flash-list';
 
 const SCREEN_WIDTH=Dimensions.get('window').width
 
@@ -73,7 +74,7 @@ export default function VehiclesMainPage(){
                     vehicleslist && vehicleslist.length!==0 ?
                     <>
                     <View style={{flex:1, marginHorizontal:15, marginTop:15}}>
-                    <FlatList
+                    <FlashList
                         data={vehicleslist}
                         renderItem={({item, index})=>{
                             return(
