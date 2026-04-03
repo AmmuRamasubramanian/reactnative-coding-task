@@ -28,14 +28,32 @@ export default function RefuelingMainPage(){
     const selectNewRecordItem=useMileageAppStore((state)=>state.selectNewRecordItem)
 
     const [selectedVehicleItem, setSelectedVehicleItem]=useState(null)
+    const [selectedRange, setSelectedRange]=useState(30)
+
+    const allRecordsOfSelected=useMemo(()=>{
+        if(!selectedVehicleItem){
+            return []
+        }
+        const allRecords= recordslist[selectedVehicleItem?.id]
+        return allRecords  
+    },[selectedRange, selectedVehicleItem])
+
     const selectedRecords=useMemo(()=>{
         if(!selectedVehicleItem){
             return []
         }
-        return recordslist[selectedVehicleItem?.id]
-    },[recordslist, selectedVehicleItem])
+        const allRecords= recordslist[selectedVehicleItem?.id]
+        if (!selectedRange) return allRecords  
 
-    const [selectedRange, setSelectedRange]=useState(30)
+        const cutoffDate = new Date()
+        cutoffDate.setDate(cutoffDate.getDate() - selectedRange)
+        cutoffDate.setHours(0, 0, 0, 0)
+
+        return allRecords.filter(record => {
+            const recordDate = new Date(record.date) 
+            return recordDate >= cutoffDate
+        }).sort((a, b) => new Date(b.date) - new Date(a.date))
+    },[recordslist, selectedVehicleItem, selectedRange])
 
     const handleNavigateaddvehicles=()=>{
         navigation.navigate('Vehicles', {screen:"AddVehiclesPage", initial:false})
@@ -115,7 +133,7 @@ export default function RefuelingMainPage(){
                 <View style={styles.titleDiv}>
                     <Text style={styles.title}>Refuelling</Text>
                     {
-                        selectedRecords && selectedRecords.length!==0 && selectedVehicleItem &&
+                        allRecordsOfSelected && allRecordsOfSelected.length!==0 && selectedVehicleItem &&
                         <Pressable style={styles.selectedVehicleBox} onPress={handleOpenVehicleList}>
                             <Text style={styles.selectedVehicleText} numberOfLines={1} ellipsizeMode='tail'>{selectedVehicleItem?.vehicle_name}</Text>
                             <View style={styles.rotatedIcon}>
@@ -128,13 +146,15 @@ export default function RefuelingMainPage(){
                     (vehicleslist && vehicleslist.length!==0) ?
                     <>
                     {
-                        selectedRecords && selectedRecords.length!==0 ?
+                        allRecordsOfSelected && allRecordsOfSelected.length!==0 ?
                         <>
                         <View style={styles.contentContainerrecord}>
                         <Pressable style={styles.rangeBox} onPress={handleOpenRangePopup}>
                             <Text style={styles.rangeText}>Last {selectedRange} days</Text>
                             <Icons.chevronright width={13} height={13} fill={colors.greenBtnColor}/>
                         </Pressable>
+                        {
+                        selectedRecords && selectedRecords.length!==0 ?
                         <FlashList
                             data={selectedRecords}
                             renderItem={({item, index})=>{
@@ -150,6 +170,10 @@ export default function RefuelingMainPage(){
                             estimatedItemSize={60}
                             contentContainerStyle={{paddingBottom:100, paddingTop:5}}
                         />
+                        :
+                        <>
+                        </>
+                        } 
                         </View>
                         </>
                         :
