@@ -12,6 +12,7 @@ import isEqual from 'lodash.isequal'
 import moment from 'moment'
 import VehicleListPopup from '../../VehiclesComp/VehicleListPopup/VehicleListPopup'
 import BottomSheetWithDynamicFlatList from '../../ReusableRootComps/BottomsheetWithDynamicList'
+import DatesRangePopup from '../../ReusableRootComps/DatesRangePopup/DatesRangePopup'
 
 const SCREEN_HEIGHT=Dimensions.get("window").height
 
@@ -20,6 +21,7 @@ export default function RefuelingMainPage(){
     const navigation=useNavigation()
     const safeAreaInsets=useSafeAreaInsets()
     const vehiclelistRef=useRef(null)
+    const rangeRef=useRef(null)
 
     const vehicleslist=useMileageAppStore((state)=>state.vehicles)
     const recordslist=useMileageAppStore((state)=>state.records)
@@ -32,6 +34,8 @@ export default function RefuelingMainPage(){
         }
         return recordslist[selectedVehicleItem?.id]
     },[recordslist, selectedVehicleItem])
+
+    const [selectedRange, setSelectedRange]=useState(30)
 
     const handleNavigateaddvehicles=()=>{
         navigation.navigate('Vehicles', {screen:"AddVehiclesPage", initial:false})
@@ -92,6 +96,19 @@ export default function RefuelingMainPage(){
         handleClosevehicleList()
     }
 
+    const handleOpenRangePopup=()=>{
+        rangeRef.current?.present()
+    }
+
+    const handleCloseRangePopup=()=>{
+        rangeRef.current?.dismiss()
+    }
+
+    const handleSelectRange=(item)=>{
+        handleCloseRangePopup()
+        setSelectedRange(item)
+    }
+
     return(
         <View style={[styles.container, {paddingTop:safeAreaInsets.top, paddingLeft:safeAreaInsets.left, paddingRight:safeAreaInsets.right}]}>
             <View style={{flex:1, backgroundColor:colors.lightWhitish, width:"100%"}}>
@@ -114,6 +131,10 @@ export default function RefuelingMainPage(){
                         selectedRecords && selectedRecords.length!==0 ?
                         <>
                         <View style={styles.contentContainerrecord}>
+                        <Pressable style={styles.rangeBox} onPress={handleOpenRangePopup}>
+                            <Text style={styles.rangeText}>Last {selectedRange} days</Text>
+                            <Icons.chevronright width={13} height={13} fill={colors.greenBtnColor}/>
+                        </Pressable>
                         <FlashList
                             data={selectedRecords}
                             renderItem={({item, index})=>{
@@ -127,7 +148,7 @@ export default function RefuelingMainPage(){
                             keyExtractor={(item)=>item.id.toString()}
                             showsVerticalScrollIndicator={false}
                             estimatedItemSize={60}
-                            contentContainerStyle={{paddingBottom:100, paddingTop:15}}
+                            contentContainerStyle={{paddingBottom:100, paddingTop:5}}
                         />
                         </View>
                         </>
@@ -165,6 +186,17 @@ export default function RefuelingMainPage(){
                 <VehicleListPopup
                     handleSelectVehicleItem={handleSelectVehicleItem}
                     vehicleItem={selectedVehicleItem}
+                />
+            </BottomSheetWithDynamicFlatList>
+            <BottomSheetWithDynamicFlatList 
+                ref={rangeRef}
+                maxHeight={SCREEN_HEIGHT*0.8}
+                showSpace={true}
+            >
+                <DatesRangePopup
+                    selectedRange={selectedRange}
+                    handleSelectRange={handleSelectRange}
+
                 />
             </BottomSheetWithDynamicFlatList>
         </View>

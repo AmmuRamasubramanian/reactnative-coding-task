@@ -163,5 +163,31 @@ export default StyleSheet.create({
         fontFamily:"inter_medium",
         fontSize:normalize(13),
         marginTop:5
+    },
+    rangeBox:{
+        height:40,
+        minHeight:40,
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center",
+        alignSelf:"center",
+        paddingHorizontal:15,
+        borderRadius:10,
+        flexDirection:"row",
+        backgroundColor:"white",
+        flexDirection:"row",
+        justifyContent:"space-between",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+        marginTop:15
+    },
+    rangeText:{
+        color:colors.greenBtnColor,
+        fontFamily:"inter_medium",
+        fontSize:normalize(13),
+        marginRight:10
     }
 })
